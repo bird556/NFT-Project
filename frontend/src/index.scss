@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+$bg-primary-col: #978d8d;
+$text-primary-col: #ced4da;
+
+@mixin width-height-100($height: 100%) {
+  width: 100%;
+  // width: 100%;
+  height: $height;
+}
+
+@mixin position-ab-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  scrollbar-width: auto;
+  scrollbar-color: lighten($bg-primary-col, 25%);
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #978d8d;
+    background: $bg-primary-col;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: lighten($bg-primary-col, 30%);
+    border-radius: 9px;
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  transform-origin: 0%;
+  z-index: 5000;
+}
+
+#particles-js {
+  /* height: 100vh !important; */
+  top: 0;
+}
+.particles-js-canvas-el {
+  top: 0;
+  left: 0;
+  height: 100% !important;
+  // height: 115vh !important;
+}
+
+.blurry {
+  @include position-ab-left();
+  @include width-height-100();
+  background-color: #090909c3;
+  z-index: 999;
+  background-color: rgba(9, 9, 9, 0.2);
+  backdrop-filter: blur(5px);
+  position: fixed;
+  transition: all 1s;
+}
+
+// Animation Load
+
+.lds-ellipsis {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  z-index: 1000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -15%);
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: $text-primary-col;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+
+[data-theme='mytheme'] .btn-primary {
+  // background-image: linear-gradient(40deg, #8930dc, #8930dc 40%, #00ddeb);
+  // background-color: linear-gradient(40deg, #8930dc, #8930dc 40%, #00ddeb);
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+}
+
+// [data-theme='mytheme'] {
+//   background: linear-gradient(
+//     150deg,
+//     #04012d,
+//     #04012d 30%,
+//     hsl(244, 96%, 9%, 0.9) 100%
+//   ) !important;
+// }
