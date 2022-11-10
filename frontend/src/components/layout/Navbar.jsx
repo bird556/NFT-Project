@@ -28,7 +28,7 @@ function Navbar() {
 
   return (
     <>
-      <div className="navbar bg-base-100 justify-between">
+      <div className="navbar justify-between">
         <div className="navbar-start lg:hidden">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
