@@ -70,14 +70,20 @@ function Navbar() {
           >
             crypt
           </button>
-          <ul className="items-center gap-8 hidden  text-base  font-medium lg:flex">
+          <ul className="items-center gap-8 hidden text-accent font-medium lg:flex">
             <li>
-              <a className="cursor-pointer">Creators</a>
+              <a className="cursor-pointer transition-colors duration-700 hover:text-primary-content">
+                Creators
+              </a>
             </li>
             <li>
-              <a className="cursor-pointer">Explore</a>
+              <a className="cursor-pointer transition-colors duration-700 hover:text-primary-content">
+                Explore
+              </a>
             </li>
-            <li className="cursor-pointer">NFT Collection</li>
+            <li className="cursor-pointer transition-colors duration-700 hover:text-primary-content">
+              Collection
+            </li>
           </ul>
         </div>
         <div className="navbar-end">

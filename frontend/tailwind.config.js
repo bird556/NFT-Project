@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
+    // fontFamily: {
+    //   serif: ['Buenard'],
+    // },
     extend: {},
   },
   plugins: [require('daisyui')],
@@ -16,7 +19,7 @@ module.exports = {
 
           secondary: '#828DF8',
 
-          accent: '#F471B5',
+          accent: '#9ca3af',
 
           neutral: '#1D283A',
 
