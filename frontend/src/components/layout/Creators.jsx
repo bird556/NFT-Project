@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Ape from '../../assets/jpeg/Ape.jpg';
+import Fluff from '../../assets/mp4/fluff.mp4';
+import BestCreators from './BestCreators';
 function Creators() {
   const navigate = useNavigate();
   return (
@@ -20,7 +22,7 @@ function Creators() {
         }}
         className=""
       >
-        <div className="py-4 lg:py-32 min-h-screen">
+        <div className="py-4 lg:py-32 ">
           <div className="transition-all duration-1000">
             <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-center gap-12 lg:gap-24">
               <div className="lg:max-w-md flex flex-col gap-16 items-center lg:items-start">
@@ -80,6 +82,14 @@ function Creators() {
                         alt="NFT"
                         className="pointer-events-none  scale-125 absolute opacity-100 translate-y-3 z-10"
                       />
+                      {/* <video
+                        src={Fluff}
+                        autoPlay
+                        muted
+                        loop
+                        alt="NFT"
+                        className="pointer-events-none  scale-125 absolute translate-y-3"
+                      /> */}
                       <p className="z-50 bottom-0s tracking-wider text-white">
                         Hape Beast
                       </p>
@@ -130,11 +140,11 @@ function Creators() {
                     className="flex flex-col justify-center items-center w-96 self-center p-4 bg-primary/10 rounded-3xl"
                   >
                     <div className="opacity-0 p-4 flex gap-2 flex-col justify-end h-80 w-80 overflow-hidden relative rounded-lg">
-                      <img
+                      {/* <img
                         src={Ape}
                         alt="NFT"
                         className="pointer-events-none  scale-125 absolute opacity-50 translate-y-3"
-                      />
+                      /> */}
                       <p className="z-50 bottom-0s tracking-wider text-white">
                         Hape Beast
                       </p>
@@ -171,22 +181,7 @@ function Creators() {
             </div>
           </div>
         </div>
-        <div>
-          <h1 className="text-3xl font-medium  justify-center my-12 flex">
-            Our Best Creators
-          </h1>
-          <div className="grid">
-            <div className="flex items-center gap-4">
-              <p className="text-xl">1.</p>
-              <div className="indicator">
-                <span className="indicator-item indicator-bottom indicator-center badge badge-secondary"></span>
-                <div className="w-16 rounded-xl">
-                  <img src="https://placeimg.com/192/192/people" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <BestCreators title="Our Best Creators" />
       </motion.div>
     </>
   );
