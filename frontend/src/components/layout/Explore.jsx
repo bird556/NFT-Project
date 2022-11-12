@@ -1,8 +1,41 @@
 import Ape from '../../assets/jpeg/Ape.jpg';
 import Fluff from '../../assets/mp4/fluff.mp4';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import { ReactComponent as Ethereum } from '../../assets/svg/eth.svg';
 function Explore() {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
+  const imageAnimate = {
+    offscreen: { x: 500, opacity: 0 },
+    onscreen: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        duration: 1,
+        staggerDirection: -1,
+        staggerChildren: 1,
+      },
+    },
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5,
+        staggerDirection: 1,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { x: 500, opacity: 0 },
+    show: { x: 0, opacity: 1 },
+  };
+
   return (
     <div className="pb-4 transition-all duration-1000">
       <div>
@@ -53,23 +86,15 @@ function Explore() {
           </div>
         </div>
         {/* NFTS */}
-        <div className="grid gap-y-12 place-items-center justify-center min-[1160px]:grid-cols-3 min-[700px]:grid-cols-2">
+        <motion.div
+          initial={'hidden'}
+          whileInView={'show'}
+          viewport={{ once: true, amount: 0.1 }}
+          variants={container}
+          className="grid gap-y-12 place-items-center justify-center min-[1160px]:grid-cols-3 min-[700px]:grid-cols-2"
+        >
           {/* Single NFT */}
-          <motion.div
-            initial={{
-              x: 500,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.5,
-              delay: 1,
-            }}
-            className="mt-12"
-          >
+          <motion.div variants={item} className="mt-12">
             <div className=" z-50 flex flex-col justify-center items-center w-72 self-center p- bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25">
               <div className="mt-3 p-4 flex gap-2 flex-col justify-end h-64 w-64 overflow-hidden relative rounded-lg">
                 <img
@@ -118,21 +143,7 @@ function Explore() {
             </div>
           </motion.div>
           {/* Single NFT */}
-          <motion.div
-            initial={{
-              x: 500,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.5,
-              delay: 1,
-            }}
-            className="mt-12"
-          >
+          <motion.div variants={item} className="mt-12">
             <div className=" z-50 flex flex-col justify-center items-center w-72 self-center p- bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25">
               <div className="mt-3 p-4 flex gap-2 flex-col justify-end h-64 w-64 overflow-hidden relative rounded-lg">
                 {/* <img
@@ -181,21 +192,7 @@ function Explore() {
             </div>
           </motion.div>
           {/* Single NFT */}
-          <motion.div
-            initial={{
-              x: 500,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.5,
-              delay: 1,
-            }}
-            className="mt-12"
-          >
+          <motion.div variants={item} className="mt-12">
             <div className=" z-50 flex flex-col justify-center items-center w-72 self-center p- bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25">
               <div className="mt-3 p-4 flex gap-2 flex-col justify-end h-64 w-64 overflow-hidden relative rounded-lg">
                 <img
@@ -243,7 +240,7 @@ function Explore() {
               </div>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -23,6 +23,8 @@ function App() {
           // style={{ position: 'relative', zIndex: '11' }}
           data-theme={!theme ? 'mytheme' : 'light'}
           className="
+          transition-all
+          duration-1000
           relative
             px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:px-32"
         >

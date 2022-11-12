@@ -30,7 +30,7 @@ function Creators() {
                   <h1 className="text-4xl text-center lg:text-5xl lg:text-left font-medium leading-tight tracking-wider">
                     Create and sell your Rare NFTs Collection
                   </h1>
-                  <p className="py-8 text-gray-400">
+                  <p className="py-6 text-gray-400">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Animi, quasi at facilis beatae perferendi.
                   </p>
@@ -181,7 +181,22 @@ function Creators() {
             </div>
           </div>
         </div>
-        <BestCreators title="Our Best Creators" />
+        <motion.div
+          initial={{
+            y: 500,
+            opacity: 0,
+          }}
+          animate={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 1.5,
+          }}
+        >
+          <BestCreators title="Our Best Creators" />
+        </motion.div>
       </motion.div>
     </>
   );

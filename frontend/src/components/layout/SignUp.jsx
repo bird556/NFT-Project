@@ -66,7 +66,7 @@ function SignUp() {
   return (
     <>
       <motion.div
-        className="hero min-h-screen"
+        className="hero min-h-[90vh]"
         initial={{
           x: -1500,
           opacity: 0,

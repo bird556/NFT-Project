@@ -2,7 +2,7 @@ import React from 'react';
 
 function CopyRightFooter() {
   return (
-    <div>
+    <div className="">
       <div className="divider"></div>
       <footer className="footer footer-center py-4  text-base-content justify-self-end ">
         <div>
