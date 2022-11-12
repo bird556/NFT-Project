@@ -73,7 +73,7 @@ function Login() {
           ease: 'easeInOut',
         }}
       >
-        <div className="hero-content p-0 card block shadow-2xl">
+        <div className="hero-content card shadow-2xl transition-all duration-1000">
           <div className="flex items-center bg-base-100 rounded-lg overflow-hidden">
             <form onSubmit={onSubmit} className="px-24 max-[1410px]:px-0">
               <div className="text-center p-6">

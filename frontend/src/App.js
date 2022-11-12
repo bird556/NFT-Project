@@ -16,16 +16,15 @@ import { useState } from 'react';
 function App() {
   const [theme, setTheme] = useState();
   const { scrollYProgress } = useScroll();
-  console.log(theme);
   return (
     <>
       <AnimatePresence>
         <div
           // style={{ position: 'relative', zIndex: '11' }}
-          data-theme={!theme ? 'mytheme' : 'valentine'}
+          data-theme={!theme ? 'mytheme' : 'light'}
           className="
           relative
-            px-8 min-h-screen flex flex-col justify-between content-between caret-transparent md:px-32"
+            px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:px-32"
         >
           <Particles config={config}>
             <motion.div
