@@ -5,6 +5,17 @@ module.exports = {
     // fontFamily: {
     //   serif: ['Buenard'],
     // },
+    screens: {
+      tablet: '640px',
+      // => @media (min-width: 640px) { ... }
+
+      lg: '1074px',
+      // => @media (min-width: 1024px) { ... }
+
+      desktop: '1280px',
+      // => @media (min-width: 1280px) { ... }
+    },
+
     extend: {},
   },
   plugins: [require('daisyui')],
@@ -17,7 +28,7 @@ module.exports = {
 
           'primary-content': '#FFF',
 
-          secondary: '#828DF8',
+          secondary: '#1d1a42',
 
           accent: '#9ca3af',
 
