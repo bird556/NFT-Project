@@ -13,10 +13,10 @@ function Dashboard() {
   if (auth.currentUser) {
     return (
       <div className="min-h-screen">
-        <h1 className="text-white text-2xl">
+        <h1 className="text-primary text-2xl">
           Welcome Back, {auth.currentUser.displayName}
         </h1>
-        <h1 className="text-white text-lg">{auth.currentUser.email}</h1>
+        <h1 className="text-primary text-lg">{auth.currentUser.email}</h1>
       </div>
     );
   }

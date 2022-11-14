@@ -36,7 +36,7 @@ function Creators() {
                   </p>
                   <div>
                     <button
-                      onClick={() => navigate('/login')}
+                      onClick={() => navigate('/dashboard')}
                       className="btn btn-primary"
                     >
                       Explore Now
