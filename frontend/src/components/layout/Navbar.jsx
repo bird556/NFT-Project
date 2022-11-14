@@ -4,7 +4,8 @@ import { getAuth, signOut, updateProfile } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import Man from '../../assets/png/man1.png';
-function Navbar() {
+
+function Navbar({ scrollPosition }) {
   const navigate = useNavigate();
 
   const auth = getAuth();
@@ -22,13 +23,25 @@ function Navbar() {
     } catch (error) {}
   };
 
-  if (auth.currentUser == null) {
-    console.log(`It is null`);
-  }
+  // if (auth.currentUser == null) {
+  //   console.log(`It is null`);
+  // }
 
   return (
-    <>
-      <div className="navbar justify-between">
+    // ${scrollPosition >= 80 ? 'sticky top-0 bg-base-100 z-50' : null}
+    // <div
+    //   className={`sticky top-0 bg-base-100 z-50 opacity-100 pointer-events-auto transition-opacity duration-200
+    //   ${
+    //     scrollPosition >= 60 && scrollPosition <= 650
+    //       ? 'opacity-0 pointer-events-none'
+    //       : null
+    //   }
+
+    //   `}
+    // >
+    <div className="bg-base-100 z-50">
+      {/* <div className=""> */}
+      <div className="navbar justify-between mb-1">
         <div className="navbar-start lg:hidden">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -121,8 +134,8 @@ function Navbar() {
           ) : null}
         </div>
       </div>
-      <div className="divider mt-0"></div>
-    </>
+      <div className="divider mt-0 h-0"></div>
+    </div>
   );
 }
 

@@ -1,6 +1,9 @@
 import React from 'react';
 
-function CopyRightFooter() {
+function CopyRightFooter({ loading }) {
+  if (loading) {
+    return;
+  }
   return (
     <div className="">
       <div className="divider"></div>

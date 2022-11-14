@@ -74,7 +74,7 @@ function Creators() {
                       duration: 0.5,
                       delay: 1,
                     }}
-                    className="z-50 flex flex-col justify-center items-center w-96 self-center p-4 bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25"
+                    className="z-40 flex flex-col justify-center items-center w-96 self-center p-4 bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25"
                   >
                     <div className=" p-4 flex gap-2 flex-col justify-end h-80 w-80 overflow-hidden relative rounded-lg">
                       <img
@@ -90,16 +90,16 @@ function Creators() {
                         alt="NFT"
                         className="pointer-events-none  scale-125 absolute translate-y-3"
                       /> */}
-                      <p className="z-50 bottom-0s tracking-wider text-white">
+                      <p className="z-40 bottom-0s tracking-wider text-white">
                         Hape Beast
                       </p>
                       <div className="flex gap-2 items-center">
                         <img
-                          className="rounded-full w-8 z-50"
+                          className="rounded-full w-8 z-40"
                           src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80"
                           alt=""
                         />
-                        <p className="z-50 text-sm font-thin tracking-wider text-white">
+                        <p className="z-40 text-sm font-thin tracking-wider text-white">
                           Jane Cooper
                         </p>
                       </div>
@@ -145,16 +145,16 @@ function Creators() {
                         alt="NFT"
                         className="pointer-events-none  scale-125 absolute opacity-50 translate-y-3"
                       /> */}
-                      <p className="z-50 bottom-0s tracking-wider text-white">
+                      <p className="z-40 bottom-0s tracking-wider text-white">
                         Hape Beast
                       </p>
                       <div className="flex gap-2 items-center">
                         <img
-                          className="rounded-full w-8 z-50"
+                          className="rounded-full w-8 z-40"
                           src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80"
                           alt=""
                         />
-                        <p className="z-50 text-sm font-thin tracking-wider text-white">
+                        <p className="z-40 text-sm font-thin tracking-wider text-white">
                           Jane Cooper
                         </p>
                       </div>

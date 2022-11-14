@@ -3,13 +3,17 @@ import Creators from './Creators';
 import Explore from './Explore';
 import Footer from './Footer';
 import { motion } from 'framer-motion';
+import LineLoader from '../LineLoader';
 
-function Home() {
+function Home({ loading, exploreNFT }) {
+  if (loading) {
+    return <LineLoader />;
+  }
   return (
     <>
       <Creators />
 
-      <Explore />
+      <Explore loading={loading} exploreNFT={exploreNFT} />
       <Collection />
       <Footer />
     </>
