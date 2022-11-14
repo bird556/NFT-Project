@@ -72,7 +72,7 @@ function CreateListing() {
               <div className="text-center p-12">
                 <h1 className="text-4xl font-bold">Upload NFT</h1>
               </div>
-              <div className="flex flex-col items-center gap-6">
+              <div className="flex flex-col items-center gap-6 p-6">
                 <select className="select select-bordered w-full max-w-xs">
                   <option disabled selected>
                     NFT Name
