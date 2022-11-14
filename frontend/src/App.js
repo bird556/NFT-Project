@@ -97,7 +97,6 @@ function App() {
     handleScroll();
   }, []);
 
-  console.log(nfts);
   return (
     <>
       <AnimatePresence>

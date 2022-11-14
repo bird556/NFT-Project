@@ -39,7 +39,7 @@ function Navbar({ scrollPosition }) {
 
     //   `}
     // >
-    <div className="bg-base-100 z-50">
+    <div className="transition-all duration-1000 bg-base-100 z-50">
       {/* <div className=""> */}
       <div className="navbar justify-between mb-1">
         <div className="navbar-start lg:hidden">

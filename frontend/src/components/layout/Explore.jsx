@@ -58,8 +58,6 @@ function Explore({ loading, exploreNFT }) {
     return <LineLoader />;
   }
 
-  console.log('explore nfts', exploreNFT);
-
   return (
     <div className="pb-4 transition-all duration-1000">
       <div>
