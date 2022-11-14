@@ -123,9 +123,12 @@ function Navbar({ scrollPosition }) {
                     <span className="badge">New</span>
                   </a>
                 </li>
-                <li>
-                  <a>Settings</a>
+                <li onClick={() => navigate('/create-nft')}>
+                  <a className="justify-between">Upload NFT</a>
                 </li>
+                {/* <li>
+                  <a>Settings</a>
+                </li> */}
                 <li onClick={onLogOut}>
                   <a>Logout</a>
                 </li>

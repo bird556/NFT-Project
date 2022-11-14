@@ -34,6 +34,7 @@ import {
 } from 'firebase/firestore';
 import { db } from './firebase.config';
 import SingleNFT from './components/layout/SingleNFT';
+import CreateListing from './components/layout/CreateListing';
 function App() {
   const [loading, setLoading] = useState(true);
   const [particles, setParticles] = useState(false);
@@ -130,6 +131,9 @@ function App() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/dashboard" element={<PrivateRoute />}>
                   <Route path="/dashboard" element={<Dashboard />} />
+                </Route>
+                <Route path="/create-nft" element={<PrivateRoute />}>
+                  <Route path="/create-nft" element={<CreateListing />} />
                 </Route>
               </Routes>
               <CopyRightFooter loading={loading} />
