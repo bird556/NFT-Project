@@ -13,8 +13,8 @@ import { db } from '../../firebase.config';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import hapeBeast from '../../assets/jpeg/hape.jpg';
 import { motion } from 'framer-motion';
-
-function SignUp() {
+import ThemeIcon from '../ThemeIcon';
+function SignUp({ handleTheme }) {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -216,6 +216,7 @@ function SignUp() {
           </div>
         </div>
       </motion.div>
+      {/* <ThemeIcon handleTheme={handleTheme} /> */}
     </>
   );
 }

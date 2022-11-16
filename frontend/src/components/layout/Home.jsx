@@ -2,10 +2,9 @@ import Collection from './Collection';
 import Creators from './Creators';
 import Explore from './Explore';
 import Footer from './Footer';
-import { motion } from 'framer-motion';
 import LineLoader from '../LineLoader';
 
-function Home({ loading, exploreNFT }) {
+function Home({ loading, exploreNFT, handleTheme, theme }) {
   if (loading) {
     return <LineLoader />;
   }
@@ -13,7 +12,12 @@ function Home({ loading, exploreNFT }) {
     <>
       <Creators />
 
-      <Explore loading={loading} exploreNFT={exploreNFT} />
+      <Explore
+        loading={loading}
+        exploreNFT={exploreNFT}
+        handleTheme={handleTheme}
+        theme={theme}
+      />
       <Collection />
       <Footer />
     </>

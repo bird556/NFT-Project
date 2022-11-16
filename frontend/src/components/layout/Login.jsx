@@ -4,13 +4,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import SocialLogin from './SocialLogin';
-import teddyNFT from '../../assets/png/teddy.png';
 import hapeBeast from '../../assets/jpeg/hape.jpg';
-// import OAuth from '../components/OAuth';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import LineLoader from '../LineLoader';
-function Login() {
+import ThemeIcon from '../ThemeIcon';
+function Login({ handleTheme, theme }) {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -184,6 +183,7 @@ function Login() {
           </div>
         </div>
       </motion.div>
+      {/* <ThemeIcon handleTheme={handleTheme} theme={theme} /> */}
     </>
   );
 }
