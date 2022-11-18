@@ -48,6 +48,31 @@ module.exports = {
 
           '--rounded-btn': '30rem',
         },
+        mylighttheme: {
+          primary: '#570DF8',
+
+          'primary-content': '#04012d',
+
+          secondary: '#F000B8',
+
+          accent: '#37CDBE',
+
+          neutral: '#3D4451',
+
+          'base-100': '#FFFFFF',
+
+          'base-content': '#04012d',
+
+          info: '#3ABFF8',
+
+          success: '#36D399',
+
+          warning: '#FBBD23',
+
+          error: '#F87272',
+
+          '--rounded-btn': '30rem',
+        },
       },
       'light',
       'mytheme',

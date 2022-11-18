@@ -37,7 +37,7 @@ function Creators() {
                   <div>
                     <button
                       onClick={() => navigate('/dashboard')}
-                      className="btn btn-primary"
+                      className="btn btn-primary text-white"
                     >
                       Explore Now
                     </button>

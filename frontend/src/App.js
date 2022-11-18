@@ -96,7 +96,7 @@ function App() {
         <div
           inView={inView}
           // style={{ position: 'relative', zIndex: '11' }}
-          data-theme={theme ? 'mytheme' : 'light'}
+          data-theme={theme ? 'mytheme' : 'mylighttheme'}
           className="
           transition-all
           duration-1000

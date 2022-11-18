@@ -49,6 +49,7 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
     return <LineLoader />;
   }
 
+  console.log(exploreNFT);
   return (
     <div inView={inView}>
       <div className="pb-4 transition-all duration-1000">
@@ -59,7 +60,7 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
           <div ref={ref}>
             {/* Buttons */}
             <div className="flex items-center gap-2 max-[640px]:hidden">
-              <button className=" py-2 px-3 rounded-full btn-primary">
+              <button className=" py-2 px-3 rounded-full btn-primary text-white">
                 All Categories
               </button>
               <button className=" py-2 px-3 rounded-full btn-ghost btn-outline">
@@ -74,10 +75,7 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
             </div>
             {/* Filter */}
             <div className="dropdown dropdown-end flex justify-end min-[640px]:hidden">
-              <label
-                tabIndex={0}
-                className="btn m-1 bg-primary text-primary-content"
-              >
+              <label tabIndex={0} className="btn m-1 bg-primary text-white">
                 Filter
               </label>
               <ul
@@ -137,7 +135,11 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
                             <div className="flex gap-2 items-center">
                               <img
                                 className="rounded-full w-8 z-40"
-                                src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80"
+                                src={
+                                  nftData.ownerImageUrls
+                                    ? nftData.ownerImageUrls
+                                    : 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80'
+                                }
                                 alt=""
                               />
                               <p className="z-40 text-sm font-thin tracking-wider">

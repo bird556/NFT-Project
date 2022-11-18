@@ -101,6 +101,7 @@ function CreateListing() {
           (error) => {
             // Handle unsuccessful uploads
             reject(error);
+            console.log(error);
           },
           () => {
             // Handle successful uploads on complete
@@ -132,11 +133,13 @@ function CreateListing() {
       img,
       ownerImageUrls,
       timestamp: serverTimestamp(),
+      favorites: Math.floor(Math.random() * 1000) + 200,
+      views: Math.floor(Math.random() * 100000) + 1500,
     };
 
-    const updateProfileImage = await addDoc(collection(db, 'users'), {
-      photoURL: ownerImageUrls,
-    });
+    // const updateProfileImage = await addDoc(collection(db, 'users'), {
+    //   photoURL: ownerImageUrls,
+    // });
 
     // // Update Profile Photo URL
     // await addDoc(updateProfileImage, {
@@ -325,7 +328,10 @@ function CreateListing() {
                 </div>
               </div>
               {/* BUTTON */}
-              <button type="submit" className="btn btn-primary w-full">
+              <button
+                type="submit"
+                className="btn btn-primary w-full text-white"
+              >
                 Upload NFT
               </button>
             </form>
