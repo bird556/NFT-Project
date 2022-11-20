@@ -24,10 +24,18 @@ import { BiMenuAltLeft, BiDotsVerticalRounded } from 'react-icons/bi';
 function SingleNFT() {
   const [nft, setNft] = useState({});
   const [loading, setLoading] = useState(true);
-
+  const [isHovering, setIsHovering] = useState(false);
   const navigate = useNavigate();
   const params = useParams();
   const auth = getAuth();
+
+  const handleMouseOver = () => {
+    setIsHovering(true);
+  };
+
+  const handleMouseOut = () => {
+    setIsHovering(false);
+  };
 
   useEffect(() => {
     const fetchNfts = async () => {
@@ -87,9 +95,9 @@ function SingleNFT() {
                 </div>
                 <div className="p-5 bg-base-content/5">
                   <div className="flex items-center gap-2 py-5">
-                    <p className="tracking-wide font-medium text-lg">
+                    <button className="tracking-wide font-medium text-lg">
                       By <span className="font-bold">{nftName}</span>
-                    </p>
+                    </button>
                     <GoVerified fontSize={12} className="text-blue-500" />
                   </div>
                 </div>
@@ -114,17 +122,17 @@ function SingleNFT() {
                         www.BoredApeYachtClub.com for more details.
                       </p>
                       {/* Socials Buttons Radio */}
-                      <div className="btn-group">
-                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-l-2 border-y-2 border-base-content/20">
+                      <div className="btn-group justify-center">
+                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-l-2 border-y-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <BsGlobe fontSize={24} />
                         </button>
-                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20">
+                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <FaDiscord fontSize={24} />
                         </button>
-                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20">
+                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <FaTwitter fontSize={24} />
                         </button>
-                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-y-2 border-x-2 border-base-content/20">
+                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-x-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <BiDotsVerticalRounded fontSize={24} />
                         </button>
                       </div>
@@ -144,12 +152,22 @@ function SingleNFT() {
                 {/* NFT Name, Share and Website */}
                 <div className="flex items-center justify-between">
                   <div className="flex gap-2 items-center relative">
-                    <button className="font-semibold text-lg text-primary">
+                    <button
+                      onMouseOut={handleMouseOut}
+                      onMouseOver={handleMouseOver}
+                      className="font-semibold text-lg text-primary"
+                    >
                       {nftName}
                     </button>
                     <GoVerified fontSize={24} className="text-blue-500" />
                     {/* NFT CARD */}
-                    <div className="card card-compact w-72 h-64 bg-base-100 shadow-xl absolute z-20 top-0 -left-16 translate-y-10">
+                    <div
+                      className={`transition-opacity duration-1000 ${
+                        !isHovering
+                          ? 'invisible opacity-0'
+                          : 'visible opacity-100'
+                      } card card-compact w-72 h-64 bg-base-100 shadow-xl absolute z-20 top-0 -left-8 translate-y-10`}
+                    >
                       <figure>
                         <img
                           height={50}
@@ -165,12 +183,6 @@ function SingleNFT() {
                         <p className=" text-center">
                           If a dog chews shoes whose shoes does he choose?
                         </p>
-                        <div className="card-actions">
-                          <button className="btn gap-2 btn-block max-w-xs max-[1475px]:max-w-full">
-                            {/* <BsFillTagFill fontSize={24} strokeWidth={0.5} /> */}
-                            Buy Now
-                          </button>
-                        </div>
                       </div>
                     </div>
                     {/* END OF NFT CARD */}
@@ -289,7 +301,7 @@ function SingleNFT() {
                   <div className="flex justify-center flex-col items-center gap-3">
                     <img
                       className="pt-5"
-                      src="https://opensea.io/static/images/empty-asks.svg"
+                      src="https://opensea.io/static/images/empty-bids.svg"
                       alt="Listing"
                     />
                     <p>No Offers yet</p>
