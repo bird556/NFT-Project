@@ -49,7 +49,6 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
     return <LineLoader />;
   }
 
-  console.log(exploreNFT);
   return (
     <div inView={inView}>
       <div className="pb-4 transition-all duration-1000">

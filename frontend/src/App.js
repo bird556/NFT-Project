@@ -63,7 +63,7 @@ function App() {
           nftRef,
           where('chain', '==', 'Ethereum'),
           orderBy('timestamp', 'desc'),
-          limit(25)
+          limit(8)
         );
         // Executing Snap
         const querySnap = await getDocs(q);

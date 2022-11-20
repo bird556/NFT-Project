@@ -6,18 +6,21 @@ import LineLoader from '../LineLoader';
 import { motion } from 'framer-motion';
 import { getAuth } from 'firebase/auth';
 import millify from 'millify';
+import { FaDiscord, FaTwitter, FaEthereum } from 'react-icons/fa';
+import { MdDescription } from 'react-icons/md';
 import {
   BsFillShareFill,
   BsEye,
-  BsHeart,
   BsGlobe,
   BsClock,
   BsCartFill,
   BsFillTagFill,
 } from 'react-icons/bs';
 import { GoVerified } from 'react-icons/go';
-import { AiOutlineHeart } from 'react-icons/ai';
+import { AiOutlineHeart, AiFillTag } from 'react-icons/ai';
+import { TfiMenuAlt } from 'react-icons/tfi';
 import commaNumber from 'comma-number';
+import { BiMenuAltLeft, BiDotsVerticalRounded } from 'react-icons/bi';
 function SingleNFT() {
   const [nft, setNft] = useState({});
   const [loading, setLoading] = useState(true);
@@ -67,12 +70,72 @@ function SingleNFT() {
         <div className="lg:container flex flex-row mx-auto">
           {/* LEFT */}
           <div className="grow-0 px-5 shrink basis-2/5">
-            <img
-              className="max-w-full max-h-full rounded-3xl"
-              src={img}
-              alt=""
-            />
+            <div className=" min-w-fit flex flex-col gap-12">
+              <img
+                className="max-w-full max-h-full rounded-3xl"
+                src={img}
+                alt=""
+              />
+              <div className="overflow-hidden border-2 border-current/50 rounded-3xl">
+                <div className="p-5 bg-base-100 border-b-2">
+                  <div className="flex items-center gap-2">
+                    <BiMenuAltLeft fontSize={24} strokeWidth={0.25} />
+                    <p className="tracking-wide font-semibold text-lg">
+                      Description
+                    </p>
+                  </div>
+                </div>
+                <div className="p-5 bg-base-content/5">
+                  <div className="flex items-center gap-2 py-5">
+                    <p className="tracking-wide font-medium text-lg">
+                      By <span className="font-bold">{nftName}</span>
+                    </p>
+                    <GoVerified fontSize={12} className="text-blue-500" />
+                  </div>
+                </div>
+                {/* About NFT */}
+                <div className="collapse collapse-arrow overflow-hidden">
+                  <input type="checkbox" />
+                  <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
+                    <MdDescription fontSize={24} />
+                    About {nftName}
+                  </div>
+                  <div className="collapse-content bg-base-content/5">
+                    <div className="flex justify-center flex-col gap-3 py-5">
+                      <p className="antialiased leading-relaxed indent-2">
+                        The Bored Ape Yacht Club is a collection of 10,000
+                        unique Bored Ape NFTs— unique digital collectibles
+                        living on the Ethereum blockchain. Your Bored Ape
+                        doubles as your Yacht Club membership card, and grants
+                        access to members-only benefits, the first of which is
+                        access to THE BATHROOM, a collaborative graffiti board.
+                        Future areas and perks can be unlocked by the community
+                        through roadmap activation. Visit
+                        www.BoredApeYachtClub.com for more details.
+                      </p>
+                      {/* Socials Buttons Radio */}
+                      <div className="btn-group">
+                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-l-2 border-y-2 border-base-content/20">
+                          <BsGlobe fontSize={24} />
+                        </button>
+                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20">
+                          <FaDiscord fontSize={24} />
+                        </button>
+                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20">
+                          <FaTwitter fontSize={24} />
+                        </button>
+                        <button className=" text-base-content/50 btn bg-base-100 border-0 border-y-2 border-x-2 border-base-content/20">
+                          <BiDotsVerticalRounded fontSize={24} />
+                        </button>
+                      </div>
+                      {/* END OF SOCIALS */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+
           {/* RIGHT */}
           <div className="px-5 grow shrink-0 basis-3/5">
             <div className=" min-w-fit flex flex-col gap-12">
@@ -80,11 +143,37 @@ function SingleNFT() {
               <div className="flex flex-col gap-6">
                 {/* NFT Name, Share and Website */}
                 <div className="flex items-center justify-between">
-                  <div className="flex gap-2 items-center">
-                    <h1 className="font-semibold text-lg text-primary">
+                  <div className="flex gap-2 items-center relative">
+                    <button className="font-semibold text-lg text-primary">
                       {nftName}
-                    </h1>
+                    </button>
                     <GoVerified fontSize={24} className="text-blue-500" />
+                    {/* NFT CARD */}
+                    <div className="card card-compact w-72 h-64 bg-base-100 shadow-xl absolute z-20 top-0 -left-16 translate-y-10">
+                      <figure>
+                        <img
+                          height={50}
+                          src="https://placeimg.com/400/225/arch"
+                          alt="Shoes"
+                        />
+                      </figure>
+                      <div className="card-body items-center">
+                        <h2 className="card-title">
+                          {nftName}
+                          <GoVerified fontSize={24} className="text-blue-500" />
+                        </h2>
+                        <p className=" text-center">
+                          If a dog chews shoes whose shoes does he choose?
+                        </p>
+                        <div className="card-actions">
+                          <button className="btn gap-2 btn-block max-w-xs max-[1475px]:max-w-full">
+                            {/* <BsFillTagFill fontSize={24} strokeWidth={0.5} /> */}
+                            Buy Now
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    {/* END OF NFT CARD */}
                   </div>
                   <div className="flex gap-6">
                     <div
@@ -111,12 +200,12 @@ function SingleNFT() {
                 </div>
                 <div>
                   {/* Owner */}
-                  <h1 className="font-semibold text-base">
+                  <button className="font-semibold text-base">
                     Owned by{' '}
                     <span className="text-primary cursor-pointer transition-colors duration-500 hover:text-primary-focus">
                       {owner}
                     </span>
-                  </h1>
+                  </button>
                 </div>
                 {/* Views & Likes */}
                 <div className="flex items-center gap-6">
@@ -132,9 +221,9 @@ function SingleNFT() {
 
                   <div className="flex items-center gap-2 cursor-pointer transition-colors duration-500 hover:text-primary-focus">
                     <AiOutlineHeart fontSize={24} />
-                    <h1 className="font-semibold text-base">
+                    <button className="font-semibold text-base">
                       {favorites} favorites
-                    </h1>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -142,7 +231,7 @@ function SingleNFT() {
               <div className="overflow-hidden border-2 border-current/50 rounded-3xl">
                 <div className="p-5 bg-base-100 border-b-2">
                   <div className="flex items-center gap-2">
-                    <BsClock fontSize={24} strokeWidth={0.5} />
+                    <AiFillTag fontSize={24} strokeWidth={0.5} />
 
                     <p className="tracking-wide font-medium">
                       Uploaded{' '}
@@ -169,45 +258,47 @@ function SingleNFT() {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-        {/* <div className="max-w-7xl  flex max-[1250px]:flex-col">
-          {/* Smaller Screen Name on Top */}
-        {/* <div className=" flex-col gap-6 w-full hidden  max-[1250px]:flex">
-          <div className="flex justify-between">
-            <h1 className="font-bold text-lg text-primary">{nftName}</h1>
-            <div>
-              <BsFillShareFill fontSize={24} />
-            </div>
-          </div>
-          <h1 className="font-semibold text-lg">
-            Owned by{' '}
-            <span className="text-primary cursor-pointer transition-colors duration-500 hover:text-primary-focus">
-              {owner}
-            </span>
-          </h1>
-        </div>
-        <div className="max-w-xl">
-          <img className="rounded-3xl w-full" src={img} alt={nftName} />
-        </div>
-        <div className="p-5 shrink-0">
-          <div className=" flex-col gap-6 max-[1250px]:hidden">
-            <div className="flex justify-between">
-              <h1 className="font-bold text-lg text-primary">{nftName}</h1>
-              <div>
-                <BsFillShareFill fontSize={24} className="mr-6" />
+
+              {/* Collapse Offers */}
+              <div className="collapse collapse-arrow overflow-hidden border-2 border-current/50 rounded-3xl">
+                <input type="checkbox" />
+                <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
+                  <AiFillTag fontSize={24} />
+                  Listings
+                </div>
+                <div className="collapse-content bg-base-content/5">
+                  <div className="flex justify-center flex-col items-center gap-3">
+                    <img
+                      className="pt-5"
+                      src="https://opensea.io/static/images/empty-asks.svg"
+                      alt="Listing"
+                    />
+                    <p>No listings yet</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Collapse Offers */}
+              <div className="collapse collapse-arrow overflow-hidden border-2 border-current/50 rounded-3xl">
+                <input type="checkbox" />
+                <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
+                  <TfiMenuAlt fontSize={24} />
+                  Offers
+                </div>
+                <div className="collapse-content bg-base-content/5">
+                  <div className="flex justify-center flex-col items-center gap-3">
+                    <img
+                      className="pt-5"
+                      src="https://opensea.io/static/images/empty-asks.svg"
+                      alt="Listing"
+                    />
+                    <p>No Offers yet</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <h1 className="font-semibold text-lg">
-              Owned by{' '}
-              <span className="text-primary cursor-pointer transition-colors duration-500 hover:text-primary-focus">
-                {owner}
-              </span>
-            </h1>
           </div>
-        </div> */}
-        {/* </div> */}
+        </div>
       </div>
     </>
   );
