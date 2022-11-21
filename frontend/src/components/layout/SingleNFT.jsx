@@ -254,19 +254,19 @@ function SingleNFT() {
                       } card card-compact w-72 h-64 bg-base-100 shadow-xl absolute z-20 top-0 -left-8 translate-y-10`}
                     >
                       <figure>
-                        <img
-                          height={50}
-                          src="https://placeimg.com/400/225/arch"
-                          alt="Shoes"
-                        />
+                        <img height={50} src={img} alt={nftName} />
                       </figure>
                       <div className="card-body items-center">
                         <h2 className="card-title">
                           {nftName}
                           <GoVerified fontSize={24} className="text-blue-500" />
                         </h2>
-                        <p className=" text-center">
-                          If a dog chews shoes whose shoes does he choose?
+                        <p className="text-center text-ellipsis overflow-hidden ... ...">
+                          {description
+                            ? `${description.substring(0, 100)}${
+                                description.length >= 100 && '...'
+                              }`
+                            : 'OpenSea NFT'}
                         </p>
                       </div>
                     </div>

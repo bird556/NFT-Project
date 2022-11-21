@@ -110,11 +110,14 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
                   return (
                     <motion.div variants={item} className="mt-12">
                       <div className=" z-40 flex flex-col justify-center items-center w-72 self-center p- bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25">
-                        <div className="mt-3 p-4 flex gap-2 flex-col justify-end h-64 w-64 overflow-hidden relative rounded-lg">
+                        <div
+                          onClick={() => navigate(`/nft/${data.id}`)}
+                          className=" cursor-pointer mt-3 p-4 flex gap-2 flex-col justify-end h-64 w-64 overflow-hidden relative rounded-lg"
+                        >
                           <img
                             src={nftData.img}
                             alt={nftData.nftName}
-                            className="pointer-events-none  scale-125  opacity-100 translate-y-3 z-10"
+                            className="pointer-events-none scale-125  opacity-100 translate-y-3 z-10"
                           />
                           {/* <video
                         src={Fluff}
