@@ -67,9 +67,8 @@ function SingleNFT() {
     timestamp,
     views,
     favorites,
+    description,
   } = nft;
-
-  const d = new Date();
 
   return (
     <>
@@ -111,15 +110,7 @@ function SingleNFT() {
                   <div className="collapse-content bg-base-content/5">
                     <div className="flex justify-center flex-col gap-3 py-5">
                       <p className="antialiased leading-relaxed indent-2">
-                        The Bored Ape Yacht Club is a collection of 10,000
-                        unique Bored Ape NFTs— unique digital collectibles
-                        living on the Ethereum blockchain. Your Bored Ape
-                        doubles as your Yacht Club membership card, and grants
-                        access to members-only benefits, the first of which is
-                        access to THE BATHROOM, a collaborative graffiti board.
-                        Future areas and perks can be unlocked by the community
-                        through roadmap activation. Visit
-                        www.BoredApeYachtClub.com for more details.
+                        {description ? description : 'No Description'}
                       </p>
                       {/* Socials Buttons Radio */}
                       <div className="btn-group justify-center">
