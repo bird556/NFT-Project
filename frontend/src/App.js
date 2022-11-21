@@ -97,11 +97,7 @@ function App() {
           inView={inView}
           // style={{ position: 'relative', zIndex: '11' }}
           data-theme={theme ? 'mytheme' : 'mylighttheme'}
-          className="
-          transition-all
-          duration-1000
-          relative
-            !px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:!px-32"
+          className="transition-all duration-1000 relative !px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:!px-32"
         >
           {particles ? <Particles config={config} /> : null}
           <motion.div

@@ -6,7 +6,7 @@ import LineLoader from '../LineLoader';
 import { motion } from 'framer-motion';
 import { getAuth } from 'firebase/auth';
 import millify from 'millify';
-import { FaDiscord, FaTwitter, FaEthereum } from 'react-icons/fa';
+import { FaDiscord, FaTwitter, FaEthereum, FaListAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
 import {
   BsFillShareFill,
@@ -68,15 +68,29 @@ function SingleNFT() {
     views,
     favorites,
     description,
+    tokenID,
   } = nft;
 
   return (
     <>
-      <div className="min-h-screen  mx-auto py-4 lg:py-32">
+      <div className="min-h-screen mx-auto py-4 lg:py-32">
         {/* <div className="grid grid-cols-3"> */}
         <div className="lg:container flex flex-row mx-auto">
           {/* LEFT */}
-          <div className="grow-0 px-5 shrink basis-2/5">
+          <motion.div
+            initial={{
+              x: -1500,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 1,
+            }}
+            className="grow-0 px-5 shrink basis-2/5"
+          >
             <div className=" min-w-fit flex flex-col gap-12">
               <img
                 className="max-w-full max-h-full rounded-3xl"
@@ -93,7 +107,7 @@ function SingleNFT() {
                   </div>
                 </div>
                 <div className="p-5 bg-base-content/5">
-                  <div className="flex items-center gap-2 py-5">
+                  <div className="flex items-center gap-2 py-2">
                     <button className="tracking-wide font-medium text-lg">
                       By <span className="font-bold">{nftName}</span>
                     </button>
@@ -105,7 +119,9 @@ function SingleNFT() {
                   <input type="checkbox" />
                   <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
                     <MdDescription fontSize={24} />
-                    About {nftName}
+                    <p className="tracking-wide font-semibold text-lg">
+                      About {nftName}
+                    </p>
                   </div>
                   <div className="collapse-content bg-base-content/5">
                     <div className="flex justify-center flex-col gap-3 py-5">
@@ -114,16 +130,16 @@ function SingleNFT() {
                       </p>
                       {/* Socials Buttons Radio */}
                       <div className="btn-group justify-center">
-                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-l-2 border-y-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
+                        <button className="ultrawide:px-10 place-content-center py-5 px-5 text-base-content/50 btn bg-base-100 border-0 border-l-2 border-y-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <BsGlobe fontSize={24} />
                         </button>
-                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
+                        <button className="ultrawide:px-10 place-content-center py-5 px-5 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <FaDiscord fontSize={24} />
                         </button>
-                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
+                        <button className="ultrawide:px-10 place-content-center py-5 px-5 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-l-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <FaTwitter fontSize={24} />
                         </button>
-                        <button className="place-content-center py-5 px-10 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-x-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
+                        <button className="ultrawide:px-10 place-content-center py-5 px-5 text-base-content/50 btn bg-base-100 border-0 border-y-2 border-x-2 border-base-content/20 hover:bg-base-100/50 hover:border-base-content/20 hover:shadow-md">
                           <BiDotsVerticalRounded fontSize={24} />
                         </button>
                       </div>
@@ -131,12 +147,90 @@ function SingleNFT() {
                     </div>
                   </div>
                 </div>
+                {/* About NFT */}
+                <div className="collapse collapse-arrow overflow-hidden">
+                  <input type="checkbox" />
+                  <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
+                    <FaListAlt fontSize={24} />
+                    <p className="tracking-wide font-semibold text-lg">
+                      Details
+                    </p>
+                  </div>
+                  <div className="collapse-content bg-base-content/5">
+                    <div className="flex justify-center flex-col gap-3 py-5">
+                      {/* Contract Address */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm">Contract Address</p>
+                        <button className="text-sm font-semibold text-primary hover:text-primary-focus">
+                          {contract_address
+                            ? `${contract_address.substr(0, 6)}...
+                          ${contract_address.substr(
+                            contract_address.length - 4
+                          )}`
+                            : 'No Address'}
+                        </button>
+                      </div>
+                      {/* Token ID */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm">Token ID</p>
+                        <button className="text-sm font-semibold text-primary hover:text-primary-focus">
+                          {tokenID}
+                        </button>
+                      </div>
+                      {/* Token Standard */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm">Token Standard</p>
+                        <p className="text-sm font-semibold text-primary-content/60">
+                          ERC-721
+                        </p>
+                      </div>
+                      {/* Chain */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm">Chain</p>
+                        <p className="text-sm font-semibold text-primary-content/60">
+                          Ethereum
+                        </p>
+                      </div>
+                      {/* Metadata */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm">Metadata</p>
+                        <button
+                          data-tip="Locked & Stored"
+                          className="tooltip tooltip-left text-sm font-semibold text-primary hover:text-primary-focus"
+                        >
+                          Frozen
+                        </button>
+                      </div>
+                      {/* Creator Fee */}
+                      <div className="flex items-center justify-between">
+                        <p className="text-sm">Creator Fee</p>
+                        <p className="text-sm font-semibold text-primary-content/60">
+                          2.5%
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT */}
-          <div className="px-5 grow shrink-0 basis-3/5">
+          <motion.div
+            initial={{
+              x: 1500,
+              opacity: 0,
+            }}
+            animate={{
+              x: 0,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 1,
+              delay: 0.5,
+            }}
+            className="px-5 grow shrink-0 basis-3/5"
+          >
             <div className=" min-w-fit flex flex-col gap-12">
               {/* NFT Name, Share, Website, Owner, Likes & Favs */}
               <div className="flex flex-col gap-6">
@@ -267,7 +361,9 @@ function SingleNFT() {
                 <input type="checkbox" />
                 <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
                   <AiFillTag fontSize={24} />
-                  Listings
+                  <p className="tracking-wide font-semibold text-lg">
+                    Listings
+                  </p>
                 </div>
                 <div className="collapse-content bg-base-content/5">
                   <div className="flex justify-center flex-col items-center gap-3">
@@ -286,7 +382,7 @@ function SingleNFT() {
                 <input type="checkbox" />
                 <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
                   <TfiMenuAlt fontSize={24} />
-                  Offers
+                  <p className="tracking-wide font-semibold text-lg">Offers</p>
                 </div>
                 <div className="collapse-content bg-base-content/5">
                   <div className="flex justify-center flex-col items-center gap-3">
@@ -300,7 +396,7 @@ function SingleNFT() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </>
