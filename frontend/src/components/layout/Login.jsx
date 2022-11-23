@@ -28,6 +28,7 @@ function Login({ handleTheme, theme }) {
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
+    console.log(e);
     e.preventDefault();
     setLoading(true);
 
@@ -109,7 +110,10 @@ function Login({ handleTheme, theme }) {
                       onChange={onChange}
                     />
                     <button
-                      onClick={() => setShowPassword((prevstate) => !prevstate)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowPassword((prevstate) => !prevstate);
+                      }}
                     >
                       {!showPassword ? (
                         <motion.div

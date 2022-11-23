@@ -71,7 +71,7 @@ function ForgotPassword() {
                 </div>
               </div>
               <div className="form-control mt-6">
-                <button className="btn btn-primary">
+                <button className="btn btn-primary text-white">
                   <motion.div
                     whileHover={{ scale: 1.1 }}
                     transition={{ type: 'spring', stiffness: 400, damping: 10 }}

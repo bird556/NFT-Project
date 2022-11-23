@@ -23,6 +23,7 @@ function Dashboard() {
   const [nfts, setNfts] = useState(null);
 
   useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     const fetchUserNFTs = async () => {
       const listingsRef = collection(db, 'nfts');
       const q = query(
