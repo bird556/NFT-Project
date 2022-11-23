@@ -119,14 +119,6 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
                             alt={nftData.nftName}
                             className="pointer-events-none scale-125  opacity-100 translate-y-3 z-10"
                           />
-                          {/* <video
-                        src={Fluff}
-                        autoPlay
-                        muted
-                        loop
-                        alt="NFT"
-                        className="pointer-events-none  scale-125 absolute translate-y-3"
-                      /> */}
                         </div>
 
                         <div className="self-start p-4 flex flex-col gap-2 w-full">

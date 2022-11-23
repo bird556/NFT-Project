@@ -45,15 +45,21 @@ function Creators() {
                 </div>
                 <div className="flex flex-wrap max-w-md w-96  lg:gap-16 lg:w-auto justify-between">
                   <div>
-                    <p className="text-3xl  mb-2 font-semibold">12k</p>
+                    <p className="text-3xl  mb-2 font-semibold text-center">
+                      12k
+                    </p>
                     <p className="text-gray-400 text-sm">Collectibles</p>
                   </div>
                   <div>
-                    <p className="text-3xl  mb-2 font-semibold">36k</p>
+                    <p className="text-3xl  mb-2 font-semibold text-center">
+                      36k
+                    </p>
                     <p className="text-gray-400 text-sm">Auctions</p>
                   </div>
                   <div>
-                    <p className="text-3xl  mb-2 font-semibold">57k</p>
+                    <p className="text-3xl  mb-2 font-semibold text-center">
+                      57k
+                    </p>
                     <p className="text-gray-400 text-sm">NFT Artist</p>
                   </div>
                 </div>
@@ -105,20 +111,20 @@ function Creators() {
                       </div>
                     </div>
                     <div className="flex justify-center pt-4 p-2 items-center gap-4 z-10">
-                      <div className="min-w-max flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
-                        <p className="text-sm text-primary-content/30">Bid</p>
+                      <button className="duration-200 active:scale-95 min-w-max flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
+                        <p className="text-sm">Bid</p>
                         <p className="">
                           6.78 <span className="text-xs">ETH</span>
                         </p>
-                      </div>
-                      <div className="flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
+                      </button>
+                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
                         <p>12</p>
                         <p className="text-sm">Hours</p>
-                      </div>
-                      <div className="flex flex-col bg-primary/25 py-2 px-6  items-center rounded-xl">
+                      </button>
+                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-6  items-center rounded-xl">
                         <p>58</p>
                         <p className="text-sm">Minutes</p>
-                      </div>
+                      </button>
                     </div>
                   </motion.div>
                 </div>

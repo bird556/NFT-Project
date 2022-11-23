@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/react": "^2.4.1",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@integreat-app/react-sticky-headroom": "^1.2.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -10,7 +13,7 @@
     "comma-number": "^2.1.0",
     "daisyui": "^2.38.1",
     "firebase": "^9.13.0",
-    "framer-motion": "^7.6.5",
+    "framer-motion": "^7.6.9",
     "millify": "^5.0.1",
     "react": "^18.2.0",
     "react-animation-particles": "^1.0.4",

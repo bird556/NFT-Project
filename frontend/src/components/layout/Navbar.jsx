@@ -2,17 +2,16 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthStatus } from '../../hooks/useAuthStatus';
 import { getAuth, signOut, updateProfile } from 'firebase/auth';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
-import Man from '../../assets/png/man1.png';
+import { useState, useEffect } from 'react';
 
+import { CgProfile } from 'react-icons/cg';
+import { db } from '../../firebase.config';
 function Navbar({ scrollPosition }) {
   const navigate = useNavigate();
-
   const auth = getAuth();
-
   const { loggedIn, checkingStatus } = useAuthStatus();
-
-  const [menu, setMenu] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(false);
 
   const onLogOut = async (e) => {
     e.preventDefault();
@@ -23,28 +22,21 @@ function Navbar({ scrollPosition }) {
     } catch (error) {}
   };
 
-  // if (auth.currentUser == null) {
-  //   console.log(`It is null`);
-  // }
-
   return (
-    // ${scrollPosition >= 80 ? 'sticky top-0 bg-base-100 z-50' : null}
-    // <div
-    //   className={`sticky top-0 bg-base-100 z-50 opacity-100 pointer-events-auto transition-opacity duration-200
-    //   ${
-    //     scrollPosition >= 60 && scrollPosition <= 650
-    //       ? 'opacity-0 pointer-events-none'
-    //       : null
-    //   }
-
-    //   `}
-    // >
-    <div className="transition-all duration-1000 bg-base-100 z-50">
-      {/* <div className=""> */}
+    <div
+      onMouseLeave={() => {
+        setProfileMenu(false);
+        setMenuOpen(false);
+      }}
+      className="transition-all duration-1000 bg-base-100 z-50"
+    >
       <div className="navbar justify-between mb-1">
         <div className="navbar-start lg:hidden">
-          <div className="dropdown">
-            <label tabIndex={0} className="btn btn-ghost btn-circle">
+          <div
+            onClick={() => setMenuOpen((prevState) => !prevState)}
+            className={`dropdown ${menuOpen ? 'dropdown-open' : ' '}`}
+          >
+            <label className="btn btn-ghost btn-circle">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-5 w-5"
@@ -60,11 +52,8 @@ function Navbar({ scrollPosition }) {
                 />
               </svg>
             </label>
-            <ul
-              tabIndex={0}
-              className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
+            <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <li onClick={document.activeElement.blur()}>
                 <a>Creators</a>
               </li>
               <li>
@@ -107,11 +96,14 @@ function Navbar({ scrollPosition }) {
           ) : null}
 
           {auth.currentUser ? (
-            <div className="dropdown dropdown-end">
+            <div
+              onClick={() => setProfileMenu((prevState) => !prevState)}
+              className={`dropdown dropdown-end ${
+                profileMenu ? 'dropdown-open' : ' '
+              }`}
+            >
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
-                  <img src={Man} alt={auth.currentUser.displayName} />
-                </div>
+                <CgProfile fontSize={32} />
               </label>
               <ul
                 tabIndex={0}
@@ -126,9 +118,6 @@ function Navbar({ scrollPosition }) {
                 <li onClick={() => navigate('/create-nft')}>
                   <a className="justify-between">Upload NFT</a>
                 </li>
-                {/* <li>
-                  <a>Settings</a>
-                </li> */}
                 <li onClick={onLogOut}>
                   <a>Logout</a>
                 </li>

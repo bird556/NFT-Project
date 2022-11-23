@@ -21,6 +21,7 @@ import { AiOutlineHeart, AiFillTag } from 'react-icons/ai';
 import { TfiMenuAlt } from 'react-icons/tfi';
 import commaNumber from 'comma-number';
 import { BiMenuAltLeft, BiDotsVerticalRounded } from 'react-icons/bi';
+import { toast } from 'react-toastify';
 function SingleNFT() {
   const [nft, setNft] = useState({});
   const [loading, setLoading] = useState(true);
@@ -273,19 +274,23 @@ function SingleNFT() {
                     {/* END OF NFT CARD */}
                   </div>
                   <div className="flex gap-6">
-                    <div
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(window.location.href);
+                        toast('Link Copied');
+                      }}
                       data-tip="Copy Link"
-                      className="tooltip bg-base-100 p-3 h-12 w-12 rounded-full cursor-pointer hover:shadow-lg hover:transition-all hover:duration-1000"
+                      className="tooltip active:scale-75 bg-base-100 p-3 h-12 w-12 rounded-full cursor-pointer hover:shadow-lg hover:transition-all hover:duration-200"
                     >
                       <BsFillShareFill
                         fontSize={24}
                         className="text-primary-content"
                       />
-                    </div>
+                    </button>
                     <a href={website} target="_blank" rel="noreferrer">
                       <div
                         data-tip="Website"
-                        className="tooltip bg-base-100 p-3 h-12 w-12 rounded-full cursor-pointer hover:shadow-lg hover:transition-all hover:duration-1000"
+                        className="tooltip active:scale-75 bg-base-100 p-3 h-12 w-12 rounded-full cursor-pointer hover:shadow-lg hover:transition-all hover:duration-200"
                       >
                         <BsGlobe
                           fontSize={24}
