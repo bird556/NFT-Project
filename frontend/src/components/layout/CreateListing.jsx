@@ -24,6 +24,7 @@ import {
 function CreateListing() {
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [ownerImageUrls, setOwnerImageUrls] = useState([]);
   const [nftData, setNftData] = useState({
     chain: 'Ethereum',
     contract_address: '0x2953399124F0cBB46d2CbACD8A89cF0599974963',
@@ -32,14 +33,13 @@ function CreateListing() {
     price: 0,
     website: 'https://opensea.io/',
   });
+
   const { userImage } = userInfo;
   const { nftName, price, website, imgs, owner, ownerPhotoURL } = nftData;
-  // console.log('NFTDATA useState', nftData);
-  // console.log(`UserInfo `, userInfo);
-  // console.log(`User Image`, userImage);
-  // console.log(Boolean(userImage));
+
   const auth = getAuth();
   const navigate = useNavigate();
+
   const isMounted = useRef(true);
 
   useEffect(() => {
@@ -50,15 +50,14 @@ function CreateListing() {
           const fetchUsers = async () => {
             const docRef = doc(db, 'users', user.uid);
             const docSnap = await getDoc(docRef);
-            // console.log(`Users Collection Info`, docSnap.data());
             setUserInfo({
               ...docSnap.data(),
-              // userImage: docSnap.data().userImage[0],
             });
             setNftData({
               ...nftData,
               ownerPhotoURL: docSnap.data().userImage[0],
             });
+            setOwnerImageUrls([docSnap.data().userImage[0]]);
           };
           fetchUsers();
           setNftData({
@@ -132,26 +131,63 @@ function CreateListing() {
       setLoading(false);
       toast.error('NFT Image failed to upload');
     });
-    const ownerImageUrls = [];
+    // const ownerImageUrls = [];
 
-    if (!userImage) {
-      console.log(`hello`);
-      await Promise.all(
-        [...ownerPhotoURL].map((image) => storeImage(image))
-      ).catch(() => {
-        setLoading(false);
-        toast.error('Profile Image failed to upload');
-      });
-    } else {
-      ownerImageUrls.push(userImage[0]);
-    }
-    console.log(`Nft Data`, nftData, `AUTH`, auth.currentUser);
+    // if (!userImage) {
+    //   await Promise.all(
+    //     [...ownerPhotoURL].map((image) => storeImage(image))
+    //   ).catch(() => {
+    //     setLoading(false);
+    //     toast.error('Profile Image failed to upload');
+    //   });
+    // } else {
+    //   // ownerImageUrls.push(userImage[0]);
+    //   // ownerImageUrls.push(userImage[0]);
+    //   setOwnerImageUrls(userImage[0]);
+    // }
+
+    // const imgUrls = async () => {
+    //   let ownerImageUrls = await Promise.all(
+    //     [...ownerPhotoURL].map((image) => storeImage(image))
+    //   ).catch(() => {
+    //     setLoading(false);
+    //     toast.error('NFT Image failed to upload');
+    //   });
+    //   return ownerImageUrls;
+    // };
+
+    // let ownerImageUrls = await Promise.all(
+    //   [...ownerPhotoURL].map((image) => storeImage(image))
+    // ).catch(() => {
+    //   setLoading(false);
+    //   toast.error('Profile Image failed to upload');
+    // });
+
+    let ownerImageUrls = !userImage
+      ? await Promise.all(
+          [...ownerPhotoURL].map((image) => storeImage(image))
+        ).catch(() => {
+          setLoading(false);
+          toast.error('Profile Image failed to upload');
+        })
+      : [userImage[0]];
+
+    // if (userImage) {
+    //   setOwnerImageUrls(userImage[0]);
+    // }
+
+    // if (!userImage) {
+    //   imgUrls();
+    // } else {
+    //   setOwnerImageUrls(userImage[0]);
+    // }
 
     const nftDataCopy = {
       ...nftData,
       img,
       owner: auth.currentUser.displayName,
       userRef: auth.currentUser.uid,
+      // ownerImageUrls,
       ownerImageUrls,
       timestamp: serverTimestamp(),
       favorites: Math.floor(Math.random() * 1000) + 200,
@@ -170,6 +206,7 @@ function CreateListing() {
     if (!userImage) {
       await setDoc(doc(db, 'users', auth.currentUser.uid), {
         ...userInfo,
+        // userImage: ownerImageUrls,
         userImage: ownerImageUrls,
       });
     }
