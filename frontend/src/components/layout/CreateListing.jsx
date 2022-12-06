@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { getAuth, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import LineLoader from '../LineLoader';
 import { motion } from 'framer-motion';
@@ -24,7 +24,6 @@ import {
 function CreateListing() {
   const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-  const [ownerImageUrls, setOwnerImageUrls] = useState([]);
   const [nftData, setNftData] = useState({
     chain: 'Ethereum',
     contract_address: '0x2953399124F0cBB46d2CbACD8A89cF0599974963',
@@ -46,10 +45,11 @@ function CreateListing() {
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          console.log(`User Auth`, user);
+          // console.log(`User Auth`, user);
           const fetchUsers = async () => {
             const docRef = doc(db, 'users', user.uid);
             const docSnap = await getDoc(docRef);
+
             setUserInfo({
               ...docSnap.data(),
             });
@@ -57,7 +57,6 @@ function CreateListing() {
               ...nftData,
               ownerPhotoURL: docSnap.data().userImage[0],
             });
-            setOwnerImageUrls([docSnap.data().userImage[0]]);
           };
           fetchUsers();
           setNftData({
@@ -131,37 +130,6 @@ function CreateListing() {
       setLoading(false);
       toast.error('NFT Image failed to upload');
     });
-    // const ownerImageUrls = [];
-
-    // if (!userImage) {
-    //   await Promise.all(
-    //     [...ownerPhotoURL].map((image) => storeImage(image))
-    //   ).catch(() => {
-    //     setLoading(false);
-    //     toast.error('Profile Image failed to upload');
-    //   });
-    // } else {
-    //   // ownerImageUrls.push(userImage[0]);
-    //   // ownerImageUrls.push(userImage[0]);
-    //   setOwnerImageUrls(userImage[0]);
-    // }
-
-    // const imgUrls = async () => {
-    //   let ownerImageUrls = await Promise.all(
-    //     [...ownerPhotoURL].map((image) => storeImage(image))
-    //   ).catch(() => {
-    //     setLoading(false);
-    //     toast.error('NFT Image failed to upload');
-    //   });
-    //   return ownerImageUrls;
-    // };
-
-    // let ownerImageUrls = await Promise.all(
-    //   [...ownerPhotoURL].map((image) => storeImage(image))
-    // ).catch(() => {
-    //   setLoading(false);
-    //   toast.error('Profile Image failed to upload');
-    // });
 
     let ownerImageUrls = !userImage
       ? await Promise.all(
@@ -172,23 +140,17 @@ function CreateListing() {
         })
       : [userImage[0]];
 
-    // if (userImage) {
-    //   setOwnerImageUrls(userImage[0]);
-    // }
-
-    // if (!userImage) {
-    //   imgUrls();
-    // } else {
-    //   setOwnerImageUrls(userImage[0]);
-    // }
+    const nftDescRef = doc(db, 'description', `${nftName}`);
+    const nftDescSnap = await getDoc(nftDescRef);
+    let description = nftDescSnap.data().description;
 
     const nftDataCopy = {
       ...nftData,
       img,
       owner: auth.currentUser.displayName,
       userRef: auth.currentUser.uid,
-      // ownerImageUrls,
       ownerImageUrls,
+      description,
       timestamp: serverTimestamp(),
       favorites: Math.floor(Math.random() * 1000) + 200,
       views: Math.floor(Math.random() * 100000) + 1500,
@@ -206,7 +168,6 @@ function CreateListing() {
     if (!userImage) {
       await setDoc(doc(db, 'users', auth.currentUser.uid), {
         ...userInfo,
-        // userImage: ownerImageUrls,
         userImage: ownerImageUrls,
       });
     }
