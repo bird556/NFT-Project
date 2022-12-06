@@ -34,10 +34,12 @@ import { db } from './firebase.config';
 import SingleNFT from './components/layout/SingleNFT';
 import CreateListing from './components/layout/CreateListing';
 import { useInView } from 'react-intersection-observer';
+import ThemeIcon from './components/ThemeIcon';
 function App() {
   const [loading, setLoading] = useState(true);
   const [particles, setParticles] = useState(false);
   const [nfts, setNfts] = useState(null);
+  const [userNFTCreator, setUserNFTCreator] = useState(null);
   const [theme, setTheme] = useState(false);
   const { scrollYProgress } = useScroll();
   const params = useParams();
@@ -65,13 +67,23 @@ function App() {
           orderBy('timestamp', 'desc'),
           limit(8)
         );
+        // Get Users Ascending
+        const nftUserQuery = query(nftRef, orderBy('timestamp'), limit(9));
         // Executing Snap
         const querySnap = await getDocs(q);
+        const querySnapUser = await getDocs(nftUserQuery);
 
         const nfts = [];
+        const userNFTCreator = [];
 
         querySnap.forEach((doc) => {
           return nfts.push({
+            id: doc.id,
+            data: doc.data(),
+          });
+        });
+        querySnapUser.forEach((doc) => {
+          return userNFTCreator.push({
             id: doc.id,
             data: doc.data(),
           });
@@ -80,6 +92,7 @@ function App() {
         setNfts(nfts);
         setLoading(false);
         setParticles(true);
+        setUserNFTCreator(userNFTCreator);
 
         //
       } catch (error) {
@@ -90,13 +103,15 @@ function App() {
     fetchNFTs();
   }, []);
 
+  // console.log(userNFTCreator);
+
   return (
     <>
       <AnimatePresence>
         <div
           inView={inView}
           // style={{ position: 'relative', zIndex: '11' }}
-          data-theme={theme ? 'mytheme' : 'mylighttheme'}
+          data-theme={!theme ? 'mytheme' : 'mylighttheme'}
           className="transition-all duration-1000 relative !px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:!px-32"
         >
           {particles ? <Particles config={config} /> : null}
@@ -114,12 +129,7 @@ function App() {
                   path="/"
                   element={
                     <div ref={ref}>
-                      <Home
-                        loading={loading}
-                        exploreNFT={nfts}
-                        handleTheme={handleTheme}
-                        theme={theme}
-                      />
+                      <Home loading={loading} exploreNFT={nfts} />
                     </div>
                   }
                 />
@@ -142,6 +152,8 @@ function App() {
               </Routes>
               <CopyRightFooter loading={loading} />
             </Router>
+
+            <ThemeIcon handleTheme={handleTheme} theme={theme} />
             <ToastContainer
               position="top-right"
               autoClose={1000}

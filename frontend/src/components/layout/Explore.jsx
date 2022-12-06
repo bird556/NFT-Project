@@ -7,8 +7,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import LineLoader from '../LineLoader';
 import { useInView } from 'react-intersection-observer';
-import ThemeIcon from '../ThemeIcon';
-function Explore({ loading, exploreNFT, handleTheme, theme }) {
+function Explore({ loading, exploreNFT }) {
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
@@ -272,9 +271,7 @@ function Explore({ loading, exploreNFT, handleTheme, theme }) {
           : 'opacity-100 pointer-events-auto'
       }
       `}
-      >
-        <ThemeIcon handleTheme={handleTheme} theme={theme} />
-      </div>
+      ></div>
     </div>
   );
 }

@@ -17,11 +17,13 @@ import {
   collection,
   serverTimestamp,
   doc,
-  updateDoc,
+  setDoc,
+  getDoc,
 } from 'firebase/firestore';
 
 function CreateListing() {
   const [loading, setLoading] = useState(false);
+  const [userInfo, setUserInfo] = useState({});
   const [nftData, setNftData] = useState({
     chain: 'Ethereum',
     contract_address: '0x2953399124F0cBB46d2CbACD8A89cF0599974963',
@@ -30,9 +32,12 @@ function CreateListing() {
     price: 0,
     website: 'https://opensea.io/',
   });
-
+  const { userImage } = userInfo;
   const { nftName, price, website, imgs, owner, ownerPhotoURL } = nftData;
-
+  // console.log('NFTDATA useState', nftData);
+  // console.log(`UserInfo `, userInfo);
+  // console.log(`User Image`, userImage);
+  // console.log(Boolean(userImage));
   const auth = getAuth();
   const navigate = useNavigate();
   const isMounted = useRef(true);
@@ -41,11 +46,25 @@ function CreateListing() {
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          console.log(`User Auth`, user);
+          const fetchUsers = async () => {
+            const docRef = doc(db, 'users', user.uid);
+            const docSnap = await getDoc(docRef);
+            // console.log(`Users Collection Info`, docSnap.data());
+            setUserInfo({
+              ...docSnap.data(),
+              // userImage: docSnap.data().userImage[0],
+            });
+            setNftData({
+              ...nftData,
+              ownerPhotoURL: docSnap.data().userImage[0],
+            });
+          };
+          fetchUsers();
           setNftData({
             ...nftData,
             userRef: user.uid,
             owner: user.displayName,
-            ownerPhotoURL: user.photoURL,
           });
         } else {
           navigate('/login');
@@ -77,10 +96,6 @@ function CreateListing() {
 
         const uploadTask = uploadBytesResumable(storageRef, image);
 
-        // Register three observers:
-        // 1. 'state_changed' observer, called any time the state changes
-        // 2. Error observer, called on failure
-        // 3. Completion observer, called on successful completion
         uploadTask.on(
           'state_changed',
           (snapshot) => {
@@ -99,13 +114,10 @@ function CreateListing() {
             }
           },
           (error) => {
-            // Handle unsuccessful uploads
             reject(error);
             console.log(error);
           },
           () => {
-            // Handle successful uploads on complete
-            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
             getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               resolve(downloadURL);
             });
@@ -120,36 +132,47 @@ function CreateListing() {
       setLoading(false);
       toast.error('NFT Image failed to upload');
     });
+    const ownerImageUrls = [];
 
-    const ownerImageUrls = await Promise.all(
-      [...ownerPhotoURL].map((image) => storeImage(image))
-    ).catch(() => {
-      setLoading(false);
-      toast.error('Profile Image failed to upload');
-    });
+    if (!userImage) {
+      console.log(`hello`);
+      await Promise.all(
+        [...ownerPhotoURL].map((image) => storeImage(image))
+      ).catch(() => {
+        setLoading(false);
+        toast.error('Profile Image failed to upload');
+      });
+    } else {
+      ownerImageUrls.push(userImage[0]);
+    }
+    console.log(`Nft Data`, nftData, `AUTH`, auth.currentUser);
 
     const nftDataCopy = {
       ...nftData,
       img,
+      owner: auth.currentUser.displayName,
+      userRef: auth.currentUser.uid,
       ownerImageUrls,
       timestamp: serverTimestamp(),
       favorites: Math.floor(Math.random() * 1000) + 200,
       views: Math.floor(Math.random() * 100000) + 1500,
+      tokenID: Math.floor(Math.random() * 1000) + 200,
     };
-
-    // const updateProfileImage = await addDoc(collection(db, 'users'), {
-    //   photoURL: ownerImageUrls,
-    // });
-
-    // // Update Profile Photo URL
-    // await addDoc(updateProfileImage, {
-    //   photoURL: ownerPhotoURL,
-    // });
 
     delete nftDataCopy.imgs;
     delete nftDataCopy.ownerPhotoURL;
     // eslint-disable-next-line
+    console.log(`Nft Data Copy`, nftDataCopy);
+
     const docRef = await addDoc(collection(db, 'nfts'), nftDataCopy);
+    console.log(docRef);
+
+    if (!userImage) {
+      await setDoc(doc(db, 'users', auth.currentUser.uid), {
+        ...userInfo,
+        userImage: ownerImageUrls,
+      });
+    }
 
     setLoading(false);
 
@@ -159,6 +182,7 @@ function CreateListing() {
     navigate(`/`);
   };
 
+  // on Change
   const onMutate = (e) => {
     e.preventDefault();
     // Files
@@ -169,12 +193,13 @@ function CreateListing() {
       }));
     }
 
-    if (e.target.id === 'ownerPhotoURL') {
+    if (e.target.id === 'ownerPhotoURL' && !ownerPhotoURL) {
       setNftData((prevState) => ({
         ...prevState,
         [e.target.id]: e.target.files,
       }));
     }
+
     if (!e.target.files) {
       setNftData((prevState) => ({
         ...prevState,
@@ -183,8 +208,6 @@ function CreateListing() {
     }
     // Text/Numbers
   };
-
-  // console.log(auth.currentUser.uid);
 
   return (
     <>
@@ -281,7 +304,7 @@ function CreateListing() {
                 </div>
 
                 {/* Owner Photo UPLOAD */}
-                {/* {!ownerPhotoURL ? (
+                {!userImage ? (
                   <div className="w-full flex flex-col gap-2">
                     <label className="self-start font-semibold">
                       Owner Image
@@ -296,22 +319,7 @@ function CreateListing() {
                       required
                     />
                   </div>
-                ) : null} */}
-
-                <div className="w-full flex flex-col gap-2">
-                  <label className="self-start font-semibold">
-                    Owner Image
-                  </label>
-                  <input
-                    onChange={onMutate}
-                    type="file"
-                    id="ownerPhotoURL"
-                    max="1"
-                    accept=".jpg,.png,.jpeg"
-                    className="file-input file-input-bordered w-full max-w-xs"
-                    required
-                  />
-                </div>
+                ) : null}
 
                 {/* NFT UPLOAD */}
                 <div className="w-full flex flex-col gap-2">

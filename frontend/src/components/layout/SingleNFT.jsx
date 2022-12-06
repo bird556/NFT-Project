@@ -6,6 +6,8 @@ import LineLoader from '../LineLoader';
 import { motion } from 'framer-motion';
 import { getAuth } from 'firebase/auth';
 import millify from 'millify';
+import NoListings from '../../assets/svg/NoListings.svg';
+import NoOffers from '../../assets/svg/NoOffers.svg';
 import { FaDiscord, FaTwitter, FaEthereum, FaListAlt } from 'react-icons/fa';
 import { MdDescription } from 'react-icons/md';
 import {
@@ -372,11 +374,7 @@ function SingleNFT() {
                 </div>
                 <div className="collapse-content bg-base-content/5">
                   <div className="flex justify-center flex-col items-center gap-3">
-                    <img
-                      className="pt-5"
-                      src="https://opensea.io/static/images/empty-asks.svg"
-                      alt="Listing"
-                    />
+                    <img className="pt-5" src={NoListings} alt="Listing" />
                     <p>No listings yet</p>
                   </div>
                 </div>
@@ -391,11 +389,7 @@ function SingleNFT() {
                 </div>
                 <div className="collapse-content bg-base-content/5">
                   <div className="flex justify-center flex-col items-center gap-3">
-                    <img
-                      className="pt-5"
-                      src="https://opensea.io/static/images/empty-bids.svg"
-                      alt="Listing"
-                    />
+                    <img className="pt-5" src={NoOffers} alt="Offers" />
                     <p>No Offers yet</p>
                   </div>
                 </div>
