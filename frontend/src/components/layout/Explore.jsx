@@ -61,14 +61,14 @@ function Explore({ loading, exploreNFT }) {
               <button className=" py-2 px-3 rounded-full btn-primary text-white">
                 All Categories
               </button>
-              <button className=" py-2 px-3 rounded-full btn-ghost btn-outline">
+              <button className=" py-2 px-3 rounded-full btn-ghost btn-outline cursor-not-allowed">
                 Fluff
               </button>
-              <button className=" py-2 px-3 rounded-full btn-ghost btn-outline">
+              <button className=" py-2 px-3 rounded-full btn-ghost btn-outline cursor-not-allowed">
                 Hape Beast
               </button>
-              <button className=" py-2 px-3 rounded-full btn-ghost btn-outline">
-                Sports
+              <button className=" py-2 px-3 rounded-full btn-ghost btn-outline cursor-not-allowed">
+                Bored Ape Yacht Club
               </button>
             </div>
             {/* Filter */}
@@ -83,14 +83,14 @@ function Explore({ loading, exploreNFT }) {
                 <li>
                   <a>All Categories</a>
                 </li>
-                <li>
+                <li className="cursor-not-allowed">
                   <a>Fluff</a>
                 </li>
-                <li>
+                <li className="cursor-not-allowed">
                   <a>Hape Beast</a>
                 </li>
-                <li>
-                  <a>Sports</a>
+                <li className="cursor-not-allowed">
+                  <a>Bored Ape Yacht Club</a>
                 </li>
               </ul>
             </div>

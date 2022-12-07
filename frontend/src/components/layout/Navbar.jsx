@@ -1,9 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuthStatus } from '../../hooks/useAuthStatus';
-import { getAuth, signOut, updateProfile } from 'firebase/auth';
+import {
+  getAuth,
+  signOut,
+  updateProfile,
+  onAuthStateChanged,
+} from 'firebase/auth';
 import { toast } from 'react-toastify';
-import { useState, useEffect } from 'react';
-
+import { useState, useEffect, useRef } from 'react';
+import { doc, getDoc } from 'firebase/firestore';
 import { CgProfile } from 'react-icons/cg';
 import { db } from '../../firebase.config';
 function Navbar({ scrollPosition }) {
@@ -12,7 +17,9 @@ function Navbar({ scrollPosition }) {
   const { loggedIn, checkingStatus } = useAuthStatus();
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
-
+  const [userInfo, setUserInfo] = useState({});
+  console.log(auth);
+  const isMounted = useRef(true);
   const onLogOut = async (e) => {
     e.preventDefault();
     try {
@@ -21,6 +28,28 @@ function Navbar({ scrollPosition }) {
       navigate('/');
     } catch (error) {}
   };
+  // console.log(userInfo.name);
+  useEffect(() => {
+    if (isMounted) {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const fetchUsers = async () => {
+            const docRef = doc(db, 'users', user.uid);
+            const docSnap = await getDoc(docRef);
+            // setImg(docSnap.data().userImage[0]);
+            setUserInfo(docSnap.data());
+            // console.log(docSnap.data());
+          };
+          fetchUsers();
+        }
+      });
+    }
+
+    return () => {
+      isMounted.current = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMounted]);
 
   return (
     <div
@@ -103,7 +132,18 @@ function Navbar({ scrollPosition }) {
               }`}
             >
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <CgProfile fontSize={32} />
+                {!userInfo.userImage[0] ? (
+                  <CgProfile fontSize={32} />
+                ) : (
+                  <div className="w-10 rounded-full">
+                    <img
+                      src={userInfo.userImage[0]}
+                      height={32}
+                      width={32}
+                      alt={auth.currentUser.displayName}
+                    />
+                  </div>
+                )}
               </label>
               <ul
                 tabIndex={0}

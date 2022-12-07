@@ -8,8 +8,7 @@ import hapeBeast from '../../assets/jpeg/hape.jpg';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import LineLoader from '../LineLoader';
-import ThemeIcon from '../ThemeIcon';
-function Login({ handleTheme, theme }) {
+function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -28,7 +27,6 @@ function Login({ handleTheme, theme }) {
   const navigate = useNavigate();
 
   const onSubmit = async (e) => {
-    console.log(e);
     e.preventDefault();
     setLoading(true);
 
@@ -170,7 +168,6 @@ function Login({ handleTheme, theme }) {
                   </p>
                   {/* Social Login */}
                   <SocialLogin />
-                  {/* <h1 className="py-6 text-center">Or</h1> */}
                   <p className="text-center">
                     Not A Member ?
                     <button
@@ -187,7 +184,6 @@ function Login({ handleTheme, theme }) {
           </div>
         </div>
       </motion.div>
-      {/* <ThemeIcon handleTheme={handleTheme} theme={theme} /> */}
     </>
   );
 }

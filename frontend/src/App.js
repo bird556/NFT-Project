@@ -58,18 +58,17 @@ function App() {
   useEffect(() => {
     const fetchNFTs = async () => {
       try {
-        // Get NFT Reference
         const nftRef = collection(db, 'nfts');
-        // Created Query
+
         const q = query(
           nftRef,
           where('chain', '==', 'Ethereum'),
           orderBy('timestamp', 'desc'),
           limit(8)
         );
-        // Get Users Ascending
+
         const nftUserQuery = query(nftRef, orderBy('timestamp'), limit(9));
-        // Executing Snap
+
         const querySnap = await getDocs(q);
         const querySnapUser = await getDocs(nftUserQuery);
 
