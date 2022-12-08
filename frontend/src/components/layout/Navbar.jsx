@@ -132,7 +132,7 @@ function Navbar({ scrollPosition }) {
               }`}
             >
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                {!userInfo.userImage[0] ? (
+                {/* {!userInfo.userImage[0] && isMounted ? (
                   <CgProfile fontSize={32} />
                 ) : (
                   <div className="w-10 rounded-full">
@@ -143,7 +143,8 @@ function Navbar({ scrollPosition }) {
                       alt={auth.currentUser.displayName}
                     />
                   </div>
-                )}
+                )} */}
+                <CgProfile fontSize={32} />
               </label>
               <ul
                 tabIndex={0}

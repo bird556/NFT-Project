@@ -78,7 +78,7 @@ function SingleNFT() {
     <>
       <div className="min-h-screen mx-auto py-4 lg:py-32">
         {/* <div className="grid grid-cols-3"> */}
-        <div className="lg:container flex flex-row mx-auto">
+        <div className="flex gap-6 lg:container flex-col lg:flex-row lg:gap-0  mx-auto">
           {/* LEFT */}
           <motion.div
             initial={{
@@ -92,14 +92,15 @@ function SingleNFT() {
             transition={{
               duration: 1,
             }}
-            className="grow-0 px-5 shrink basis-2/5"
+            className="grow-0 px-5 shrink basis-2/5 order-2 lg:order-first"
           >
             <div className=" min-w-fit flex flex-col gap-12">
               <img
-                className="max-w-full max-h-full rounded-3xl"
+                className="max-w-full max-h-full rounded-3xl hidden lg:block"
                 src={img}
                 alt=""
               />
+
               <div className="overflow-hidden border-2 border-current/50 rounded-3xl">
                 <div className="p-5 bg-base-100 border-b-2">
                   <div className="flex items-center gap-2">
@@ -232,11 +233,11 @@ function SingleNFT() {
               duration: 1,
               delay: 0.5,
             }}
-            className="px-5 grow shrink-0 basis-3/5"
+            className="px-5 grow shrink-0 basis-3/5 order-1"
           >
             <div className=" min-w-fit flex flex-col gap-12">
               {/* NFT Name, Share, Website, Owner, Likes & Favs */}
-              <div className="flex flex-col gap-6">
+              <div className="flex flex-col gap-3 lg:gap-6">
                 {/* NFT Name, Share and Website */}
                 <div className="flex items-center justify-between">
                   <div className="flex gap-2 items-center relative">
@@ -303,6 +304,9 @@ function SingleNFT() {
                   </div>
                 </div>
                 <div>
+                  <h1 className="text-4xl font-semibold">#{tokenID}</h1>
+                </div>
+                <div>
                   {/* Owner */}
                   <button className="font-semibold text-base">
                     Owned by{' '}
@@ -312,7 +316,7 @@ function SingleNFT() {
                   </button>
                 </div>
                 {/* Views & Likes */}
-                <div className="flex items-center gap-6">
+                <div className="hidden lg:flex items-center gap-6">
                   <div
                     data-tip={`${commaNumber(views)} views`}
                     className="tooltip flex items-center gap-2"
@@ -331,8 +335,29 @@ function SingleNFT() {
                   </div>
                 </div>
               </div>
+
+              {/* Views & Likes */}
+              <div className="flex lg:hidden items-center gap-6 order-9">
+                <div
+                  data-tip={`${commaNumber(views)} views`}
+                  className="tooltip flex items-center gap-2"
+                >
+                  <BsEye fontSize={24} strokeWidth={0.5} />
+                  <h1 className="font-semibold text-base">
+                    {millify(views)} views
+                  </h1>
+                </div>
+
+                <div className="flex items-center gap-2 cursor-pointer transition-colors duration-500 hover:text-primary-focus">
+                  <AiOutlineHeart fontSize={24} />
+                  <button className="font-semibold text-base">
+                    {favorites} favorites
+                  </button>
+                </div>
+              </div>
+
               {/* Upload Date, Current Price & Buy */}
-              <div className="overflow-hidden border-2 border-current/50 rounded-3xl">
+              <div className="overflow-hidden  border-2 border-current/50 rounded-3xl order-10">
                 <div className="p-5 bg-base-100 border-b-2">
                   <div className="flex items-center gap-2">
                     <AiFillTag fontSize={24} strokeWidth={0.5} />
@@ -363,8 +388,8 @@ function SingleNFT() {
                 </div>
               </div>
 
-              {/* Collapse Offers */}
-              <div className="collapse collapse-arrow overflow-hidden border-2 border-current/50 rounded-3xl">
+              {/* Collapse Listings */}
+              <div className="collapse collapse-arrow overflow-hidden border-2 border-current/50 rounded-3xl order-11">
                 <input type="checkbox" />
                 <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
                   <AiFillTag fontSize={24} />
@@ -381,7 +406,7 @@ function SingleNFT() {
               </div>
 
               {/* Collapse Offers */}
-              <div className="collapse collapse-arrow overflow-hidden border-2 border-current/50 rounded-3xl">
+              <div className="collapse collapse-arrow overflow-hidden border-2 border-current/50 rounded-3xl order-12">
                 <input type="checkbox" />
                 <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
                   <TfiMenuAlt fontSize={24} />
@@ -394,6 +419,12 @@ function SingleNFT() {
                   </div>
                 </div>
               </div>
+
+              <img
+                className="max-w-full max-h-full rounded-3xl lg:hidden order-8"
+                src={img}
+                alt=""
+              />
             </div>
           </motion.div>
         </div>
