@@ -18,7 +18,6 @@ function Navbar({ scrollPosition }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
   const [userInfo, setUserInfo] = useState({});
-  console.log(auth);
   const isMounted = useRef(true);
   const onLogOut = async (e) => {
     e.preventDefault();

@@ -39,6 +39,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [particles, setParticles] = useState(false);
   const [nfts, setNfts] = useState(null);
+  const [revenue, setRevenue] = useState(null);
   const [userNFTCreator, setUserNFTCreator] = useState(null);
   const [theme, setTheme] = useState(false);
   const { scrollYProgress } = useScroll();
@@ -59,7 +60,7 @@ function App() {
     const fetchNFTs = async () => {
       try {
         const nftRef = collection(db, 'nfts');
-
+        const nftCreatorRef = collection(db, 'users');
         const q = query(
           nftRef,
           where('chain', '==', 'Ethereum'),
@@ -67,13 +68,20 @@ function App() {
           limit(8)
         );
 
-        const nftUserQuery = query(nftRef, orderBy('timestamp'), limit(9));
+        const qNFTRevenue = query(
+          nftCreatorRef,
+          orderBy('revenue', 'desc'),
+          limit(8)
+        );
+        // const nftUserQuery = query(nftRef, orderBy('timestamp'), limit(9));
 
         const querySnap = await getDocs(q);
-        const querySnapUser = await getDocs(nftUserQuery);
+        const querySnapRevenue = await getDocs(qNFTRevenue);
+        // const querySnapUser = await getDocs(nftUserQuery);
 
         const nfts = [];
         const userNFTCreator = [];
+        const nftRevenue = [];
 
         querySnap.forEach((doc) => {
           return nfts.push({
@@ -81,17 +89,26 @@ function App() {
             data: doc.data(),
           });
         });
-        querySnapUser.forEach((doc) => {
-          return userNFTCreator.push({
+
+        querySnapRevenue.forEach((doc) => {
+          return nftRevenue.push({
             id: doc.id,
             data: doc.data(),
           });
         });
 
+        // querySnapUser.forEach((doc) => {
+        //   return userNFTCreator.push({
+        //     id: doc.id,
+        //     data: doc.data(),
+        //   });
+        // });
+
         setNfts(nfts);
+        setRevenue(nftRevenue);
         setLoading(false);
         setParticles(true);
-        setUserNFTCreator(userNFTCreator);
+        // setUserNFTCreator(userNFTCreator);
 
         //
       } catch (error) {
@@ -101,8 +118,6 @@ function App() {
 
     fetchNFTs();
   }, []);
-
-  // console.log(userNFTCreator);
 
   return (
     <>
@@ -128,7 +143,11 @@ function App() {
                   path="/"
                   element={
                     <div ref={ref}>
-                      <Home loading={loading} exploreNFT={nfts} />
+                      <Home
+                        loading={loading}
+                        exploreNFT={nfts}
+                        revenue={revenue}
+                      />
                     </div>
                   }
                 />

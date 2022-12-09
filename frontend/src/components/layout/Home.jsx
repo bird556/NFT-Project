@@ -3,7 +3,7 @@ import Creators from './Creators';
 import Explore from './Explore';
 import Footer from './Footer';
 import LineLoader from '../LineLoader';
-function Home({ loading, exploreNFT }) {
+function Home({ loading, exploreNFT, revenue }) {
   // useEffect(() => {
   //   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   // }, []);
@@ -13,7 +13,7 @@ function Home({ loading, exploreNFT }) {
   }
   return (
     <>
-      <Creators />
+      <Creators revenue={revenue} />
 
       <Explore loading={loading} exploreNFT={exploreNFT} />
       <Collection />

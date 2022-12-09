@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Ape from '../../assets/jpeg/Ape.jpg';
 import Fluff from '../../assets/mp4/fluff.mp4';
 import BestCreators from './BestCreators';
-function Creators() {
+function Creators({ revenue }) {
   const navigate = useNavigate();
   return (
     <>
@@ -201,7 +201,7 @@ function Creators() {
             delay: 1.5,
           }}
         >
-          <BestCreators title="Our Best Creators" />
+          <BestCreators title="Our Best Creators" revenue={revenue} />
         </motion.div>
       </motion.div>
     </>
