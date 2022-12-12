@@ -2,10 +2,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Ape from '../../assets/jpeg/Ape.jpg';
-import Fluff from '../../assets/mp4/fluff.mp4';
 import BestCreators from './BestCreators';
+import { useCountdown } from '../../hooks/useCountdown';
 function Creators({ revenue }) {
   const navigate = useNavigate();
+  console.log(revenue[0].data.firstName);
+
+  const [days, hours, minutes, seconds] = useCountdown('2023-01-23T00:00:00');
   return (
     <>
       <motion.div
@@ -88,25 +91,17 @@ function Creators({ revenue }) {
                         alt="NFT"
                         className="pointer-events-none  scale-125 absolute opacity-100 translate-y-3 z-10"
                       />
-                      {/* <video
-                        src={Fluff}
-                        autoPlay
-                        muted
-                        loop
-                        alt="NFT"
-                        className="pointer-events-none  scale-125 absolute translate-y-3"
-                      /> */}
                       <p className="z-40 bottom-0s tracking-wider text-white">
                         Hape Beast
                       </p>
                       <div className="flex gap-2 items-center">
                         <img
                           className="rounded-full w-8 z-40"
-                          src="https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80"
+                          src={revenue[0].data.userImage[0]}
                           alt=""
                         />
                         <p className="z-40 text-sm font-thin tracking-wider text-white">
-                          Jane Cooper
+                          {`${revenue[0].data.firstName} ${revenue[0].data.lastName}`}
                         </p>
                       </div>
                     </div>
@@ -114,15 +109,15 @@ function Creators({ revenue }) {
                       <button className="duration-200 active:scale-95 min-w-max flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
                         <p className="text-sm">Bid</p>
                         <p className="">
-                          6.78 <span className="text-xs">ETH</span>
+                          44.7 <span className="text-xs">ETH</span>
                         </p>
                       </button>
                       <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
-                        <p>12</p>
+                        <p>{hours}</p>
                         <p className="text-sm">Hours</p>
                       </button>
                       <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-6  items-center rounded-xl">
-                        <p>58</p>
+                        <p>{minutes}</p>
                         <p className="text-sm">Minutes</p>
                       </button>
                     </div>

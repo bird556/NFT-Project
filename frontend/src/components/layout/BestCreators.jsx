@@ -1,7 +1,5 @@
 import commaNumber from 'comma-number';
 function BestCreators({ title, revenue }) {
-  console.log('revenue from best creators', revenue);
-
   return (
     <>
       <div className="py-36">
@@ -10,7 +8,6 @@ function BestCreators({ title, revenue }) {
         </h1>
         <div className="grid justify-items-center justify-center items-center grid-cols-2 max-[610px]:grid-cols-1  min-[875px]:grid-cols-3 gap-4 gap-y-24">
           {revenue.map((data, index) => {
-            console.log(index);
             const { name, userImage, revenue, firstName, lastName } = data.data;
             return (
               <div className="flex flex-col min-[610px]:flex-row items-center gap-4 w-full justify-center">
