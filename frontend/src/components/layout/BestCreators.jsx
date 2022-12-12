@@ -18,7 +18,7 @@ function BestCreators({ title, revenue }) {
                 <div className="flex items-center gap-4">
                   <div className="indicator">
                     <span className="indicator-item indicator-bottom indicator-center badge badge-secondary"></span>
-                    <div className="w-12 ">
+                    <div className="w-12">
                       <img
                         src={
                           !userImage
@@ -26,13 +26,15 @@ function BestCreators({ title, revenue }) {
                             : userImage
                         }
                         alt={!name ? `${firstName} ${lastName}` : name}
-                        className="rounded-xl"
+                        className="rounded-xl w-12 h-12 object-cover"
                       />
                     </div>
                   </div>
                 </div>
-                <div className="w-64 justify-center flex-col items-center max-[610px]:flex">
-                  <p>{!name ? `${firstName} ${lastName}` : name}</p>
+                <div className="justify-center flex-col items-center max-[610px]:flex">
+                  <p className="w-36">
+                    {!name ? `${firstName} ${lastName}` : name}
+                  </p>
                   <p>${commaNumber(revenue)}</p>
                 </div>
               </div>

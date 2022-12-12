@@ -126,15 +126,18 @@ function Explore({ loading, exploreNFT }) {
                               {nftData.nftName}
                             </p>
                             <div className="flex gap-2 items-center">
-                              <img
-                                className="rounded-full w-8 z-40"
-                                src={
-                                  nftData.ownerImageUrls
-                                    ? nftData.ownerImageUrls
-                                    : 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80'
-                                }
-                                alt=""
-                              />
+                              <div className="bg-blue-300 w-8 h-8 rounded-full overflow-hidden">
+                                <img
+                                  className="w-8 z-40"
+                                  src={
+                                    nftData.ownerImageUrls
+                                      ? nftData.ownerImageUrls
+                                      : 'https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=4&w=256&h=256&q=80'
+                                  }
+                                  alt={nftData.owner ? nftData.owner : 'user'}
+                                />
+                              </div>
+
                               <p className="z-40 text-sm font-thin tracking-wider">
                                 {nftData.owner}{' '}
                               </p>
