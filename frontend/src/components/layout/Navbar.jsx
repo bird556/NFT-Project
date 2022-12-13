@@ -1,11 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuthStatus } from '../../hooks/useAuthStatus';
-import {
-  getAuth,
-  signOut,
-  updateProfile,
-  onAuthStateChanged,
-} from 'firebase/auth';
+import { getAuth, signOut, onAuthStateChanged } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { useState, useEffect, useRef } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
@@ -27,7 +22,6 @@ function Navbar({ scrollPosition }) {
       navigate('/');
     } catch (error) {}
   };
-  // console.log(userInfo.name);
   useEffect(() => {
     if (isMounted) {
       onAuthStateChanged(auth, (user) => {
@@ -35,9 +29,7 @@ function Navbar({ scrollPosition }) {
           const fetchUsers = async () => {
             const docRef = doc(db, 'users', user.uid);
             const docSnap = await getDoc(docRef);
-            // setImg(docSnap.data().userImage[0]);
             setUserInfo(docSnap.data());
-            // console.log(docSnap.data());
           };
           fetchUsers();
         }
@@ -87,9 +79,6 @@ function Navbar({ scrollPosition }) {
               <li>
                 <a>Explore</a>
               </li>
-              <li>
-                <a>NFT Collection</a>
-              </li>
             </ul>
           </div>
         </div>
@@ -100,21 +89,6 @@ function Navbar({ scrollPosition }) {
           >
             Crypt Keeper NFTs
           </button>
-          <ul className="items-center gap-8 hidden text-accent font-medium lg:flex">
-            <li>
-              <a className="cursor-pointer transition-colors duration-700 hover:text-primary-content">
-                Creators
-              </a>
-            </li>
-            <li>
-              <a className="cursor-pointer transition-colors duration-700 hover:text-primary-content">
-                Explore
-              </a>
-            </li>
-            <li className="cursor-pointer transition-colors duration-700 hover:text-primary-content">
-              Collection
-            </li>
-          </ul>
         </div>
         <div className="navbar-end">
           {!auth.currentUser ? (
@@ -131,18 +105,6 @@ function Navbar({ scrollPosition }) {
               }`}
             >
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                {/* {!userInfo.userImage[0] && isMounted ? (
-                  <CgProfile fontSize={32} />
-                ) : (
-                  <div className="w-10 rounded-full">
-                    <img
-                      src={userInfo.userImage[0]}
-                      height={32}
-                      width={32}
-                      alt={auth.currentUser.displayName}
-                    />
-                  </div>
-                )} */}
                 <CgProfile fontSize={32} />
               </label>
               <ul
