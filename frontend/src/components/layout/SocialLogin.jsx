@@ -8,6 +8,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   FacebookAuthProvider,
+  GithubAuthProvider,
+  TwitterAuthProvider,
 } from 'firebase/auth';
 import { doc, setDoc, getDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../../firebase.config';
@@ -49,8 +51,8 @@ function SocialLogin() {
       toast.error('Error Logging In');
     }
   };
-  //Facebook Sign In Method
 
+  //Facebook Sign In Method
   const fbLogin = async (e) => {
     setLoading(true);
 
@@ -60,6 +62,38 @@ function SocialLogin() {
       const fbProvider = new FacebookAuthProvider();
 
       const result = await signInWithPopup(auth, fbProvider);
+
+      const user = result.user;
+      // Check for User
+      const docRef = doc(db, 'users', user.uid);
+      const docSnap = await getDoc(docRef);
+      // If user doesn't exist create user profile
+      if (!docSnap.exists()) {
+        await setDoc(doc(db, 'users', user.uid), {
+          name: user.displayName,
+          email: user.email,
+          timestamp: serverTimestamp(),
+        });
+      }
+      navigate('/');
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      toast.error('Error Logging In');
+    }
+  };
+
+  //Twitter Sign In Method
+  const twitterLogin = async (e) => {
+    setLoading(true);
+
+    try {
+      const auth = getAuth();
+
+      const twitterProvider = new TwitterAuthProvider();
+
+      const result = await signInWithPopup(auth, twitterProvider);
 
       const user = result.user;
       // Check for User
@@ -93,6 +127,7 @@ function SocialLogin() {
         transition={{ type: 'spring', stiffness: 400, damping: 10 }}
       >
         <SocialIcon
+          onClick={twitterLogin}
           className="cursor-pointer"
           network="twitter"
           fgColor="#fff"
@@ -109,7 +144,7 @@ function SocialLogin() {
           style={{ height: 32, width: 32 }}
         />
       </motion.div>
-      <motion.div
+      {/* <motion.div
         whileHover={{ scale: 1.5 }}
         transition={{ type: 'spring', stiffness: 400, damping: 10 }}
       >
@@ -119,7 +154,7 @@ function SocialLogin() {
           fgColor="#fff"
           style={{ height: 32, width: 32 }}
         />
-      </motion.div>
+      </motion.div> */}
       <motion.div
         whileHover={{ scale: 1.5 }}
         transition={{ type: 'spring', stiffness: 400, damping: 10 }}

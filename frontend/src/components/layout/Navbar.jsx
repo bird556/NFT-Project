@@ -51,7 +51,7 @@ function Navbar({ scrollPosition }) {
       className="transition-all duration-1000 bg-base-100 z-50"
     >
       <div className="navbar justify-between mb-1">
-        <div className="navbar-start lg:hidden">
+        <div className="navbar-start lg:hidden max-[430px]:!absolute max-[430px]:left-0">
           <div
             onClick={() => setMenuOpen((prevState) => !prevState)}
             className={`dropdown ${menuOpen ? 'dropdown-open' : ' '}`}
@@ -73,6 +73,11 @@ function Navbar({ scrollPosition }) {
               </svg>
             </label>
             <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <li className="hidden max-[430px]:block">
+                {!auth.currentUser ? (
+                  <button onClick={() => navigate('/login')}>Login</button>
+                ) : null}
+              </li>
               <li onClick={document.activeElement.blur()}>
                 <a>Creators</a>
               </li>
@@ -82,15 +87,15 @@ function Navbar({ scrollPosition }) {
             </ul>
           </div>
         </div>
-        <div className="navbar-center lg:gap-12 sm:gap-0">
+        <div className="navbar-center lg:gap-12 sm:gap-0 max-[430px]:text-center max-[430px]:justify-center max-[430px]:w-full">
           <button
             onClick={() => navigate('/')}
-            className="transition-all duration-500  font-semibold normal-case text-xl hover:text-primary-focus"
+            className="transition-all duration-500  font-semibold normal-case text-xl hover:text-primary-focus max-[290px]:text-lg"
           >
             Crypt Keeper NFTs
           </button>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end max-[430px]:hidden">
           {!auth.currentUser ? (
             <button onClick={() => navigate('/login')} className="btn btn-sm">
               Login

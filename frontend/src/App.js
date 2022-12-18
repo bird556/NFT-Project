@@ -42,10 +42,12 @@ function App() {
   const [revenue, setRevenue] = useState(null);
   const [userNFTCreator, setUserNFTCreator] = useState(null);
   const [theme, setTheme] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const params = useParams();
   const [themeClick, setThemeClick] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
+
+  const { scrollYProgress } = useScroll();
+
+  const params = useParams();
 
   const handleTheme = () => setTheme((prevstate) => !prevstate);
 
@@ -53,9 +55,6 @@ function App() {
     threshold: 1,
   });
 
-  // console.log(inView);
-
-  // Fetch Explore Data Collection from Firebase
   useEffect(() => {
     const fetchNFTs = async () => {
       try {
@@ -67,17 +66,13 @@ function App() {
           orderBy('timestamp', 'desc'),
           limit(8)
         );
-
         const qNFTRevenue = query(
           nftCreatorRef,
           orderBy('revenue', 'desc'),
           limit(8)
         );
-        // const nftUserQuery = query(nftRef, orderBy('timestamp'), limit(9));
-
         const querySnap = await getDocs(q);
         const querySnapRevenue = await getDocs(qNFTRevenue);
-        // const querySnapUser = await getDocs(nftUserQuery);
 
         const nfts = [];
         const userNFTCreator = [];
@@ -97,20 +92,10 @@ function App() {
           });
         });
 
-        // querySnapUser.forEach((doc) => {
-        //   return userNFTCreator.push({
-        //     id: doc.id,
-        //     data: doc.data(),
-        //   });
-        // });
-
         setNfts(nfts);
         setRevenue(nftRevenue);
         setLoading(false);
         setParticles(true);
-        // setUserNFTCreator(userNFTCreator);
-
-        //
       } catch (error) {
         console.log(error);
       }
@@ -124,9 +109,8 @@ function App() {
       <AnimatePresence>
         <div
           inView={inView}
-          // style={{ position: 'relative', zIndex: '11' }}
           data-theme={!theme ? 'mytheme' : 'mylighttheme'}
-          className="transition-all duration-1000 relative !px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:!px-32"
+          className="transition-all duration-1000 relative !px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:!px-32 max-[290px]:!px-2"
         >
           {particles ? <Particles config={config} /> : null}
           <motion.div

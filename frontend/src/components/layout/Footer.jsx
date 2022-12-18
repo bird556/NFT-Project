@@ -24,7 +24,7 @@ function Footer() {
           <a className="link link-hover">Privacy policy</a>
           <a className="link link-hover">Cookie policy</a>
         </div>
-        <div>
+        <div className="max-[360px]:hidden">
           <span className="footer-title">Newsletter</span>
           <div className="form-control w-80">
             <label className="label">

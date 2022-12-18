@@ -3,7 +3,7 @@ function BestCreators({ title, revenue }) {
   return (
     <>
       <div className="py-36">
-        <h1 className="text-3xl font-medium  justify-center my-12 flex">
+        <h1 className="text-3xl font-medium  justify-center my-12 flex max-[290px]:text-2xl">
           {title}
         </h1>
         <div className="grid justify-items-center justify-center items-center grid-cols-2 max-[610px]:grid-cols-1  min-[875px]:grid-cols-3 gap-4 gap-y-24">
@@ -29,7 +29,7 @@ function BestCreators({ title, revenue }) {
                   </div>
                 </div>
                 <div className="justify-center flex-col items-center max-[610px]:flex">
-                  <p className="w-36">
+                  <p className="w-36 max-[610px]:text-center">
                     {!name ? `${firstName} ${lastName}` : name}
                   </p>
                   <p>${commaNumber(revenue)}</p>

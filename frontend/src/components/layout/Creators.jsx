@@ -6,8 +6,6 @@ import BestCreators from './BestCreators';
 import { useCountdown } from '../../hooks/useCountdown';
 function Creators({ revenue }) {
   const navigate = useNavigate();
-  console.log(revenue[0].data.firstName);
-
   const [days, hours, minutes, seconds] = useCountdown('2023-01-23T00:00:00');
   return (
     <>
@@ -30,12 +28,13 @@ function Creators({ revenue }) {
             <div className="flex flex-col-reverse lg:flex-row lg:items-center justify-center gap-12 lg:gap-24">
               <div className="lg:max-w-md flex flex-col gap-16 items-center lg:items-start">
                 <div className="flex flex-col items-center lg:items-start">
-                  <h1 className="text-4xl text-center lg:text-5xl lg:text-left font-medium leading-tight tracking-wider">
+                  <h1 className="text-4xl text-center lg:text-5xl lg:text-left font-medium leading-tight tracking-wider max-[290px]:text-3xl">
                     Create and sell your Rare NFTs Collection
                   </h1>
-                  <p className="py-6 text-gray-400">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Animi, quasi at facilis beatae perferendi.
+                  <p className="py-6 text-gray-400 max-[290px]:text-sm">
+                    Crypt Keeper NFTs is a web3 marketplace for NFTs and crypto
+                    collectibles. Browse, create, buy, sell, and auction NFTs
+                    using Crypt Keeper NFTs today.
                   </p>
                   <div>
                     <button
@@ -46,21 +45,21 @@ function Creators({ revenue }) {
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-wrap max-w-md w-96  lg:gap-16 lg:w-auto justify-between">
+                <div className="flex flex-wrap max-[400px]:gap-8 min-[400px]:max-w-md min-[400px]:w-96  lg:gap-16 lg:w-auto justify-between max-[290px]:gap-4">
                   <div>
-                    <p className="text-3xl  mb-2 font-semibold text-center">
+                    <p className="text-3xl max-[400px]:text-2xl  mb-2 font-semibold text-center max-[290px]:text-xl">
                       12k
                     </p>
                     <p className="text-gray-400 text-sm">Collectibles</p>
                   </div>
                   <div>
-                    <p className="text-3xl  mb-2 font-semibold text-center">
+                    <p className="text-3xl max-[400px]:text-2xl  mb-2 font-semibold text-center max-[290px]:text-xl">
                       36k
                     </p>
                     <p className="text-gray-400 text-sm">Auctions</p>
                   </div>
                   <div>
-                    <p className="text-3xl  mb-2 font-semibold text-center">
+                    <p className="text-3xl max-[400px]:text-2xl  mb-2 font-semibold text-center max-[290px]:text-xl">
                       57k
                     </p>
                     <p className="text-gray-400 text-sm">NFT Artist</p>
@@ -83,9 +82,9 @@ function Creators({ revenue }) {
                       duration: 0.5,
                       delay: 1,
                     }}
-                    className="z-40 flex flex-col justify-center items-center w-96 self-center p-4 bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25"
+                    className="z-40 flex flex-col justify-center items-center w-96 self-center p-4 bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25 max-[390px]:hidden"
                   >
-                    <div className=" p-4 flex gap-2 flex-col justify-end h-80 w-80 overflow-hidden relative rounded-lg">
+                    <div className="p-4 flex gap-2 flex-col justify-end h-80 w-80 overflow-hidden relative rounded-lg">
                       <img
                         src={Ape}
                         alt="NFT"
@@ -106,25 +105,33 @@ function Creators({ revenue }) {
                       </div>
                     </div>
                     <div className="flex justify-center pt-4 p-2 items-center gap-4 z-10">
-                      <button className="duration-200 active:scale-95 min-w-max flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
+                      {/* <button className="duration-200 active:scale-95 min-w-max flex flex-col bg-primary/25 py-2 px-3 items-center rounded-xl">
                         <p className="text-sm">Bid</p>
                         <p className="">
                           44.7 <span className="text-xs">ETH</span>
                         </p>
+                      </button> */}
+                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-3 items-center rounded-xl">
+                        <p>{days}</p>
+                        <p className="text-sm">Days</p>
                       </button>
-                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-6 items-center rounded-xl">
+                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-3 items-center rounded-xl">
                         <p>{hours}</p>
                         <p className="text-sm">Hours</p>
                       </button>
-                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-6  items-center rounded-xl">
+                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-3  items-center rounded-xl">
                         <p>{minutes}</p>
                         <p className="text-sm">Minutes</p>
+                      </button>
+                      <button className="duration-200 active:scale-95 flex flex-col bg-primary/25 py-2 px-3  items-center rounded-xl">
+                        <p>{seconds}</p>
+                        <p className="text-sm">Seconds</p>
                       </button>
                     </div>
                   </motion.div>
                 </div>
 
-                <div className="z-0 rotate-6 absolute top-0 ">
+                <div className="z-0 rotate-6 absolute top-0 max-[430px]:hidden">
                   <motion.div
                     initial={{
                       x: 500,
@@ -141,11 +148,6 @@ function Creators({ revenue }) {
                     className="flex flex-col justify-center items-center w-96 self-center p-4 bg-primary/10 rounded-3xl"
                   >
                     <div className="opacity-0 p-4 flex gap-2 flex-col justify-end h-80 w-80 overflow-hidden relative rounded-lg">
-                      {/* <img
-                        src={Ape}
-                        alt="NFT"
-                        className="pointer-events-none  scale-125 absolute opacity-50 translate-y-3"
-                      /> */}
                       <p className="z-40 bottom-0s tracking-wider text-white">
                         Hape Beast
                       </p>

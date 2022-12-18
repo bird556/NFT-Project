@@ -3,13 +3,13 @@ import React from 'react';
 function themeIcon({ handleTheme, theme }) {
   return (
     <label
-      className={`swap swap-rotate !fixed bottom-0 right-0 p-8 transition-opacity duration-1000`}
+      className={`swap swap-rotate !fixed bottom-0 right-0 p-8 transition-opacity duration-1000 max-[290px]:p-4`}
     >
       <input onClick={handleTheme} type="checkbox" />
 
       {/* Night Icon */}
       <svg
-        className={`swap-off fill-current w-10 h-10`}
+        className={`swap-off fill-current w-10 h-10 max-[290px]:h-8 max-[290px]:w-8`}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >
@@ -19,7 +19,7 @@ function themeIcon({ handleTheme, theme }) {
       {/* Day Icon */}
 
       <svg
-        className="swap-on fill-current w-10 h-10"
+        className="swap-on fill-current w-10 h-10 max-[290px]:h-8 max-[290px]:w-8"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
       >

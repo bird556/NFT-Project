@@ -33,7 +33,7 @@ function Explore({ loading, exploreNFT }) {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.5,
+        staggerChildren: 0.3,
         staggerDirection: 1,
       },
     },
@@ -52,7 +52,7 @@ function Explore({ loading, exploreNFT }) {
     <div inView={inView}>
       <div className="pb-4 transition-all duration-1000">
         <div>
-          <h1 className="text-3xl font-medium  justify-center my-12 flex">
+          <h1 className="text-3xl font-medium  justify-center my-12 flex max-[290px]:text-2xl">
             Explore Our NFTs
           </h1>
           <div ref={ref}>
@@ -72,7 +72,7 @@ function Explore({ loading, exploreNFT }) {
               </button>
             </div>
             {/* Filter */}
-            <div className="dropdown dropdown-end flex justify-end min-[640px]:hidden">
+            <div className="dropdown dropdown-end flex justify-end min-[640px]:hidden max-[290px]:hidden">
               <label tabIndex={0} className="btn m-1 bg-primary text-white">
                 Filter
               </label>
@@ -108,7 +108,7 @@ function Explore({ loading, exploreNFT }) {
                   const nftData = data.data;
                   return (
                     <motion.div variants={item} className="mt-12">
-                      <div className=" z-40 flex flex-col justify-center items-center w-72 self-center p- bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25">
+                      <div className="z-40 flex flex-col justify-center items-center w-72 self-center p- bg-primary/10 rounded-3xl shadow-2xl shadow-violet-300/25 max-[290px]:w-64">
                         <div
                           onClick={() => navigate(`/nft/${data.id}`)}
                           className=" cursor-pointer mt-3 p-4 flex gap-2 flex-col justify-end h-64 w-64 overflow-hidden relative rounded-lg"
@@ -116,7 +116,7 @@ function Explore({ loading, exploreNFT }) {
                           <img
                             src={nftData.img}
                             alt={nftData.nftName}
-                            className="pointer-events-none scale-125  opacity-100 translate-y-3 z-10"
+                            className="pointer-events-none scale-125  opacity-100 translate-y-3 z-10 max-[290px]:scale-110 max-[290px]:rounded-xl max-[290px]:translate-y-0"
                           />
                         </div>
 

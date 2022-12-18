@@ -1,5 +1,3 @@
-import React from 'react';
-
 function CopyRightFooter({ loading }) {
   if (loading) {
     return;
