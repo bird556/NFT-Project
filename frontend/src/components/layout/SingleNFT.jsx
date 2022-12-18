@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../../firebase.config';
 import LineLoader from '../LineLoader';
@@ -97,7 +97,7 @@ function SingleNFT() {
               <img
                 className="max-w-full max-h-full rounded-3xl hidden lg:block"
                 src={img}
-                alt=""
+                alt={nftName}
               />
 
               <div className="overflow-hidden border-2 border-current/50 rounded-3xl">
@@ -150,7 +150,7 @@ function SingleNFT() {
                     </div>
                   </div>
                 </div>
-                {/* Conmtract, TokenID, Token Standard etc NFT */}
+                {/* Contract, TokenID, Token Standard etc NFT */}
                 <div className="collapse collapse-arrow overflow-hidden">
                   <input type="checkbox" />
                   <div className="collapse-title text-xl font-medium flex items-center gap-2 p-5 bg-base-100 border-b-2">
@@ -243,7 +243,7 @@ function SingleNFT() {
                     <button
                       onMouseOut={handleMouseOut}
                       onMouseOver={handleMouseOver}
-                      className="font-semibold text-lg text-primary"
+                      className="font-semibold text-lg text-primary max-[290px]:text-base"
                     >
                       {nftName}
                     </button>
@@ -275,7 +275,7 @@ function SingleNFT() {
                     </div>
                     {/* END OF NFT CARD */}
                   </div>
-                  <div className="flex gap-6">
+                  <div className="flex gap-3 items-center">
                     <button
                       onClick={() => {
                         navigator.clipboard.writeText(window.location.href);
@@ -284,30 +284,27 @@ function SingleNFT() {
                       data-tip="Copy Link"
                       className="tooltip active:scale-75 bg-base-100 p-3 h-12 w-12 rounded-full cursor-pointer hover:shadow-lg hover:transition-all hover:duration-200"
                     >
-                      <BsFillShareFill
-                        fontSize={24}
-                        className="text-primary-content"
-                      />
+                      <BsFillShareFill className="text-primary-content text-2xl max-[290px]:text-xl" />
                     </button>
-                    <a href={website} target="_blank" rel="noreferrer">
-                      <div
-                        data-tip="Website"
-                        className="tooltip active:scale-75 bg-base-100 p-3 h-12 w-12 rounded-full cursor-pointer hover:shadow-lg hover:transition-all hover:duration-200"
-                      >
-                        <BsGlobe
-                          fontSize={24}
-                          className="text-primary-content"
-                        />
-                      </div>
+                    <a
+                      href={website}
+                      target="_blank"
+                      rel="noreferrer"
+                      data-tip="Website"
+                      className="tooltip active:scale-75 bg-base-100 p-3 h-12 w-12 rounded-full cursor-pointer hover:shadow-lg hover:transition-all hover:duration-200"
+                    >
+                      <BsGlobe className="text-primary-content text-2xl max-[290px]:text-xl" />
                     </a>
                   </div>
                 </div>
                 <div>
-                  <h1 className="text-4xl font-semibold">#{tokenID}</h1>
+                  <h1 className="text-4xl font-semibold max-[290px]:text-2xl">
+                    #{tokenID}
+                  </h1>
                 </div>
                 <div>
                   {/* Owner */}
-                  <button className="font-semibold text-base">
+                  <button className="font-semibold text-base max-[290px]:text-sm">
                     Owned by{' '}
                     <span className="text-primary cursor-pointer transition-colors duration-500 hover:text-primary-focus">
                       {owner}
@@ -374,11 +371,11 @@ function SingleNFT() {
                     <p className="tracking-wide font-medium">Current Price</p>
                     <h1 className="text-3xl font-bold">{price} ETH</h1>
                     <div className="flex items-center w-full  justify-between max-[1475px]:flex-col gap-y-3">
-                      <button className="btn btn-lg gap-2 btn-block max-w-xs max-[1475px]:max-w-full">
+                      <button className="btn btn-lg gap-2 btn-block max-w-xs max-[1475px]:max-w-full max-[290px]:btn-sm">
                         <BsCartFill fontSize={24} strokeWidth={0.5} />
                         Buy Now
                       </button>
-                      <button className="btn btn-lg gap-2 btn-block max-w-xs max-[1475px]:max-w-full">
+                      <button className="btn btn-lg gap-2 btn-block max-w-xs max-[1475px]:max-w-full max-[290px]:btn-sm">
                         <BsFillTagFill fontSize={24} strokeWidth={0.5} />
                         Make Offer
                       </button>

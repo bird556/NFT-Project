@@ -1,20 +1,20 @@
-import Ape from '../../assets/jpeg/Ape.jpg';
-import Fluff from '../../assets/mp4/fluff.mp4';
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ReactComponent as Ethereum } from '../../assets/svg/eth.svg';
-import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import LineLoader from '../LineLoader';
 import { useInView } from 'react-intersection-observer';
+import { useState } from 'react';
+
 function Explore({ loading, exploreNFT }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(false);
+
   const { ref, inView } = useInView({
     threshold: 0,
     triggerOnce: true,
   });
-
   const navigate = useNavigate();
-
+  console.log(menuOpen);
   const imageAnimate = {
     offscreen: { x: 500, opacity: 0 },
     onscreen: {
@@ -72,25 +72,25 @@ function Explore({ loading, exploreNFT }) {
               </button>
             </div>
             {/* Filter */}
-            <div className="dropdown dropdown-end flex justify-end min-[640px]:hidden max-[290px]:hidden">
-              <label tabIndex={0} className="btn m-1 bg-primary text-white">
-                Filter
-              </label>
-              <ul
-                tabIndex={0}
-                className="bg-base-100 dropdown-content menu p-2 shadow  rounded-box w-52"
-              >
+            <div
+              onClick={() => setMenuOpen((prevState) => !prevState)}
+              className={`dropdown ${
+                menuOpen ? 'dropdown-open' : ' '
+              } flex justify-end min-[640px]:hidden max-[290px]:hidden`}
+            >
+              <label className="btn m-1 bg-primary text-white">Filter</label>
+              <ul className="bg-base-100 dropdown-content menu p-2 shadow  rounded-box w-52">
                 <li>
                   <a>All Categories</a>
                 </li>
                 <li className="cursor-not-allowed">
-                  <a>Fluff</a>
+                  <a className="text-sm">Fluff</a>
                 </li>
                 <li className="cursor-not-allowed">
-                  <a>Hape Beast</a>
+                  <a className="text-sm">Hape Beast</a>
                 </li>
                 <li className="cursor-not-allowed">
-                  <a>Bored Ape Yacht Club</a>
+                  <a className="text-sm">Bored Ape Yacht Club</a>
                 </li>
               </ul>
             </div>

@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <>
+    <div className="mt-32">
       <div className="divider"></div>
 
       <footer className="footer py-10  text-base-content">
@@ -43,7 +43,7 @@ function Footer() {
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }
 

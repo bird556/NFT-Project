@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { SocialIcon } from 'react-social-icons';
 import { ReactComponent as Google } from '../../assets/svg/google.svg';

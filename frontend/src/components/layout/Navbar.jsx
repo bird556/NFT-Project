@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { CgProfile } from 'react-icons/cg';
 import { db } from '../../firebase.config';
-function Navbar({ scrollPosition }) {
+function Navbar() {
   const navigate = useNavigate();
   const auth = getAuth();
   const { loggedIn, checkingStatus } = useAuthStatus();

@@ -21,14 +21,11 @@ import ForgotPassword from './components/layout/ForgotPassword';
 import { useState, useEffect } from 'react';
 import {
   collection,
-  doc,
-  setDoc,
   getDocs,
   query,
   where,
   orderBy,
   limit,
-  startAfter,
 } from 'firebase/firestore';
 import { db } from './firebase.config';
 import SingleNFT from './components/layout/SingleNFT';
@@ -42,7 +39,6 @@ function App() {
   const [revenue, setRevenue] = useState(null);
   const [userNFTCreator, setUserNFTCreator] = useState(null);
   const [theme, setTheme] = useState(false);
-  const [themeClick, setThemeClick] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const { scrollYProgress } = useScroll();

@@ -2,7 +2,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { BsFillPersonLinesFill } from 'react-icons/bs';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import SocialLogin from './SocialLogin';
 import {
   getAuth,

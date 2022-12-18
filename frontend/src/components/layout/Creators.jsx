@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import Ape from '../../assets/jpeg/Ape.jpg';
@@ -21,7 +20,6 @@ function Creators({ revenue }) {
         transition={{
           duration: 1,
         }}
-        className=""
       >
         <div className="py-4 lg:py-32 ">
           <div className="transition-all duration-1000">

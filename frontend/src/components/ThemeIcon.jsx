@@ -1,6 +1,4 @@
-import React from 'react';
-
-function themeIcon({ handleTheme, theme }) {
+function themeIcon({ handleTheme }) {
   return (
     <label
       className={`swap swap-rotate !fixed bottom-0 right-0 p-8 transition-opacity duration-1000 max-[290px]:p-4`}

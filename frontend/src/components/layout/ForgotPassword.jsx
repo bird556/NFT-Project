@@ -1,10 +1,7 @@
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { MdEmail } from 'react-icons/md';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import SocialLogin from './SocialLogin';
-// import OAuth from '../components/OAuth';
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { toast } from 'react-toastify';
 
