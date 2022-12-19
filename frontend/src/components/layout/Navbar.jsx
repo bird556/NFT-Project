@@ -73,25 +73,25 @@ function Navbar() {
               </svg>
             </label>
             <ul className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+              <li onClick={() => navigate('/')}>
+                <a>Home</a>
+              </li>
               <li className="hidden max-[430px]:block">
                 {!auth.currentUser ? (
                   <button onClick={() => navigate('/login')}>Login</button>
                 ) : null}
               </li>
-              <li onClick={document.activeElement.blur()}>
-                <a>Creators</a>
-              </li>
-              <li>
+              {/* <li>
                 <a>Explore</a>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
-        <div className="navbar-center lg:gap-12 sm:gap-0 max-[430px]:text-center max-[430px]:justify-center max-[430px]:w-full">
-          <button
-            onClick={() => navigate('/')}
-            className="transition-all duration-500  font-semibold normal-case text-xl hover:text-primary-focus max-[290px]:text-lg"
-          >
+        <div
+          onClick={() => navigate('/')}
+          className="navbar-center lg:gap-12 sm:gap-0 max-[430px]:text-center max-[430px]:justify-center max-[430px]:w-full"
+        >
+          <button className="transition-all duration-500  font-semibold normal-case text-xl hover:text-primary-focus max-[290px]:text-lg">
             Crypt Keeper NFTs
           </button>
         </div>
