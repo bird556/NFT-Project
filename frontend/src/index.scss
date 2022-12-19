@@ -8,7 +8,6 @@ $text-primary-col: #ced4da;
 
 @mixin width-height-100($height: 100%) {
   width: 100%;
-  // width: 100%;
   height: $height;
 }
 
@@ -60,14 +59,12 @@ code {
 }
 
 #particles-js {
-  /* height: 100vh !important; */
   top: 0;
 }
 .particles-js-canvas-el {
   top: 0;
   left: 0;
   height: 100% !important;
-  // height: 115vh !important;
 }
 
 .blurry {
@@ -81,7 +78,6 @@ code {
   transition: all 1s;
 }
 
-// Animation Load
 
 .lds-ellipsis {
   display: inline-block;
@@ -144,39 +140,6 @@ code {
   }
 }
 
-// .headroom {
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   z-index: 1;
-// }
-// .headroom--unfixed {
-//   position: relative;
-//   transform: translateY(0);
-// }
-// .headroom--scrolled {
-//   transition: transform 200ms ease-in-out;
-// }
-// .headroom--unpinned {
-//   position: sticky;
-//   transform: translateY(-100%);
-// }
-// .headroom--pinned {
-//   position: sticky;
-//   transform: translateY(0%);
-// }
-
 [data-theme='mytheme'] .btn-primary {
-  // background-image: linear-gradient(40deg, #8930dc, #8930dc 40%, #00ddeb);
-  // background-color: linear-gradient(40deg, #8930dc, #8930dc 40%, #00ddeb);
   box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
 }
-
-// [data-theme='mytheme'] {
-//   background: linear-gradient(
-//     150deg,
-//     #04012d,
-//     #04012d 30%,
-//     hsl(244, 96%, 9%, 0.9) 100%
-//   ) !important;
-// }
