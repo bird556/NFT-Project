@@ -24,7 +24,6 @@ body {
 }
 
 * {
-  overflow-x: hidden;
   scrollbar-width: auto;
   scrollbar-color: lighten($bg-primary-col, 25%);
   &::-webkit-scrollbar {

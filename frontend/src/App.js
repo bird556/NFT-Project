@@ -32,6 +32,7 @@ import SingleNFT from './components/layout/SingleNFT';
 import CreateListing from './components/layout/CreateListing';
 import { useInView } from 'react-intersection-observer';
 import ThemeIcon from './components/ThemeIcon';
+import UseScrollToTop from './hooks/useScrollToTop';
 function App() {
   const [loading, setLoading] = useState(true);
   const [particles, setParticles] = useState(false);
@@ -118,6 +119,7 @@ function App() {
               <StickyHeadroom scrollHeight={100} zIndex={100}>
                 <Navbar scrollPosition={scrollPosition} />
               </StickyHeadroom>
+              <UseScrollToTop />
               <Routes>
                 <Route
                   path="/"
