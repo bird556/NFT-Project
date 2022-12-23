@@ -76,14 +76,30 @@ function Navbar() {
               <li onClick={() => navigate('/')}>
                 <a>Home</a>
               </li>
+
+              {auth.currentUser ? (
+                <li onClick={() => navigate('/dashboard')}>
+                  <a>Profile</a>
+                </li>
+              ) : null}
+
+              {auth.currentUser ? (
+                <li onClick={() => navigate('/create-nft')}>
+                  <a>Upload NFT</a>
+                </li>
+              ) : null}
+
+              {auth.currentUser ? (
+                <li onClick={onLogOut}>
+                  <a>Logout</a>
+                </li>
+              ) : null}
+
               <li className="hidden max-[430px]:block">
                 {!auth.currentUser ? (
                   <button onClick={() => navigate('/login')}>Login</button>
                 ) : null}
               </li>
-              {/* <li>
-                <a>Explore</a>
-              </li> */}
             </ul>
           </div>
         </div>

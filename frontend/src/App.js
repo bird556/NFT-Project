@@ -107,7 +107,7 @@ function App() {
         <div
           inView={inView}
           data-theme={!theme ? 'mytheme' : 'mylighttheme'}
-          className="transition-all duration-1000 relative !px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:!px-32 max-[290px]:!px-2"
+          className="transition-all duration-1000 overflow-x-hidden relative !px-8 min-h-screen flex flex-col justify-between content-between caret-transparent lg:!px-32 max-[290px]:!px-2"
         >
           {particles ? <Particles config={config} /> : null}
           <motion.div
