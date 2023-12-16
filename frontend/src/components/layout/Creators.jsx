@@ -5,7 +5,7 @@ import BestCreators from './BestCreators';
 import { useCountdown } from '../../hooks/useCountdown';
 function Creators({ revenue }) {
   const navigate = useNavigate();
-  const [days, hours, minutes, seconds] = useCountdown('2023-01-23T00:00:00');
+  const [days, hours, minutes, seconds] = useCountdown('2024-03-31T00:00:00');
   return (
     <>
       <motion.div
