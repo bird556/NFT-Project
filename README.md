@@ -30,7 +30,7 @@ Welcome to the Crypto NFT project repository! This React project combines the ex
 
 ## Demo
 
-[Check out the live demo here](#) (Replace with your deployment link).
+[Check out the live demo here](http://nft-project-ebon.vercel.app/).
 
 ## Screenshots
 
